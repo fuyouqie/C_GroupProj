@@ -10,8 +10,8 @@ int main(void)
 	int num1 = 5;
 	int num2 = 10;
 
-	push_back(list, &num1);
-	push_back(list, &num2);
+	push_back(list, &num1, sizeof(int));
+	push_back(list, &num2, sizeof(int));
 
 
 	printf("%d\n", *(int*)get_by_index(list, 0));
@@ -22,10 +22,6 @@ int main(void)
 	printf("%d\n", *(int*)get_by_index(list, 0));
 	
 	destruct_linked_list(list);
-
-	int num = 10;
-	int* nump = &num;
-	int* dy = malloc(sizeof(*nump));
 
 	return 0;
 }

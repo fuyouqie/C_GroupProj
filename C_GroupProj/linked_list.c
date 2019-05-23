@@ -75,20 +75,24 @@ int is_list_empty(linked_list_t* list)
 	return list->length == 0;
 }
 
-void push_front(linked_list_t* list, void* data)
+void push_front(linked_list_t* list, void* data, unsigned int size)
 {
-	void* data_d = malloc(sizeof(*data));
-	*data_d = *data;
+	void* data_d = malloc(size);
+	unsigned int i;
+	for (i = 0; i < size; i++)
+		*((char*)data_d + i) = *((char*)data + i);
 
 	node_t* node = construct_node_overload1(list->head, data_d);
 	list->head = node;
 	++(list->length);
 }
 
-void push_back(linked_list_t* list, void* data)
+void push_back(linked_list_t* list, void* data, unsigned int size)
 {
-	void* data_d = malloc(sizeof(*data));
-	*data_d = *data;
+	void* data_d = malloc(size);
+	unsigned int i;
+	for (i = 0; i < size; i++)
+		*((char*)data_d + i) = *((char*)data + i);
 
 	node_t* node = construct_node_overload1(NULL, data_d);
 
