@@ -24,10 +24,31 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="client.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="date_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transaction.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linked_list.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_algo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="transaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="date_time.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

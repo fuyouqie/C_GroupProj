@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include "client.h"
 #include <stdio.h>
 #include <stdlib.h>
 

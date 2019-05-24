@@ -121,15 +121,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="client.c" />
     <ClCompile Include="C_GroupProj.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="date_time.c" />
     <ClCompile Include="linked_list.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="transaction.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="client.h" />
+    <ClInclude Include="date_time.h" />
+    <ClInclude Include="encryption_algo.h" />
     <ClInclude Include="linked_list.h" />
+    <ClInclude Include="transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
