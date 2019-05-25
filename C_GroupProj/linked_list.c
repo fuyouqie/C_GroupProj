@@ -121,6 +121,18 @@ unsigned int get_length(linked_list_t* list)
 	return list->length;
 }
 
+unsigned int get_index(linked_list_t* list, void* data)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(list); i++)
+	{
+		if (equals(get_by_index(list, i), data))
+			return i;
+	}
+	
+	return -1;
+}
+
 void* get_by_index(linked_list_t* list, unsigned int index)
 {
 	if (index > get_length(list) - 1)
@@ -163,4 +175,10 @@ int delete_by_index(linked_list_t* list, unsigned int index)
 	}
 
 	return 0;
+}
+
+int delete_data(linked_list_t* list, void* data)
+{
+	unsigned int index = get_index(list, data);
+	return delete_by_index(list, index);
 }

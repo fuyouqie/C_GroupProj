@@ -1,28 +1,33 @@
-#include "linked_list.h"
-#include "client.h"
+#include "clients.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(void)
 {
-	linked_list_t* list;
-	list = construct_linked_list();
-	
-	int num1 = 5;
-	int num2 = 10;
+	clients_t* clients = construct_clients();
+	client_t client;
+	char id1[] = "ASDE";
+	char pw1[] = "Bse41";
+	double balance1 = 54.23;
 
-	push_back(list, &num1, sizeof(int));
-	push_back(list, &num2, sizeof(int));
+	char id2[] = "bvvb";
+	char pw2[] = "14asd141";
+	double balance2 = 12.23;
 
+	char id3[] = "N%fg@#";
+	char pw3[] = "fg!sd2";
+	double balance3 = 76.23;
 
-	printf("%d\n", *(int*)get_by_index(list, 0));
-	printf("%d\n", *(int*)get_by_index(list, 1));
+	set_client(&client, id1, pw1, balance1);
+	add_client(clients, &client);
 
-	printf("%d\n", delete_by_index(list, 0));
-	
-	printf("%d\n", *(int*)get_by_index(list, 0));
-	
-	destruct_linked_list(list);
+	set_client(&client, id2, pw2, balance2);
+	add_client(clients, &client);
+
+	set_client(&client, id3, pw3, balance3);
+	add_client(clients, &client);
+
+	print_client_list(clients);
 
 	return 0;
 }

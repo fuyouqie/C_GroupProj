@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="client.c" />
+    <ClCompile Include="clients.c" />
     <ClCompile Include="C_GroupProj.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client.h" />
+    <ClInclude Include="clients.h" />
     <ClInclude Include="date_time.h" />
     <ClInclude Include="encryption_algo.h" />
     <ClInclude Include="linked_list.h" />

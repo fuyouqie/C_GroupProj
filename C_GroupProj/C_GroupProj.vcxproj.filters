@@ -33,6 +33,9 @@
     <ClCompile Include="transaction.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clients.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linked_list.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="date_time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clients.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
