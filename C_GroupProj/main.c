@@ -19,13 +19,13 @@ int main(void)
 	double balance3 = 76.23;
 
 	set_client(&client, id1, pw1, balance1);
-	add_client(clients, &client);
+	add_client(clients, client);
 
 	set_client(&client, id2, pw2, balance2);
-	add_client(clients, &client);
+	add_client(clients, client);
 
 	set_client(&client, id3, pw3, balance3);
-	add_client(clients, &client);
+	add_client(clients, client);
 
 	print_client_list(clients);
 

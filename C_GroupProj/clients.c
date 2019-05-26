@@ -28,14 +28,14 @@ linked_list_t* get_client_list(clients_t* clients)
 	return clients->client_list;
 }
 
-void add_client(clients_t* clients, client_t* client)
+void add_client(clients_t* clients, client_t client)
 {
-	push_back(clients->client_list, client, sizeof(client_t));
+	push_back(clients->client_list, &client, sizeof(client_t));
 }
 
-void remove_client(clients_t* clients, client_t* client)
+void remove_client(clients_t* clients, client_t client)
 {
-	delete_data(clients->client_list, client);
+	delete_data(clients->client_list, &client);
 }
 
 client_t* get_client_by_index(clients_t* clients, unsigned int index)
