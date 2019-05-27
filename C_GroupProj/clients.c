@@ -1,12 +1,11 @@
-#include "clients.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "clients.h"
 
 clients_t* construct_clients()
 {
-	clients_t* client_list;
-	client_list = malloc(sizeof(clients_t));
+	clients_t* client_list = malloc(sizeof(clients_t));
 	client_list->client_list = construct_linked_list();
 	
 	return client_list;
@@ -60,7 +59,10 @@ client_t* get_client_by_id(clients_t* clients, char* id)
 
 void print_client_list(clients_t* clients)
 {
-	unsigned int i;
-	for (i = 0; i < get_length(clients->client_list); i++)
-		print_client(get_client_by_index(clients, i));
+	node_t* current = (clients->client_list->head);
+	while (current != NULL)
+	{
+		print_client(get_data(current));
+		current = get_next(current);
+	}
 }

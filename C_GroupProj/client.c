@@ -77,7 +77,7 @@ void decrease_balance(client_t* client, double balance)
 
 void print_client(client_t* client)
 {
-	printf("ID: %s\n", client->id);
-	printf("PW_cipher: %s\n", client->pw_cipher);
-	printf("Balance: %f\n", client->balance);
+	printf("ID: %s", client->id);
+	printf("  PW_cipher: %s", client->pw_cipher);
+	printf("  Balance: %f\n", client->balance);
 }

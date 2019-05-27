@@ -29,6 +29,14 @@ void destruct_date_time(date_time_t* date_time)
 	free(date_time);
 }
 
+void set_date_time_(date_time_t* date_time, int month, int day, int hour, int minute)
+{
+	set_month(date_time, month);
+	set_day(date_time, day);
+	set_hour(date_time, hour);
+	set_minute(date_time, minute);
+}
+
 int get_month(date_time_t* date_time)
 {
 	return date_time->month;
@@ -67,4 +75,9 @@ void set_hour(date_time_t* date_time, int hour)
 void set_minute(date_time_t* date_time, int minute)
 {
 	date_time->minute = minute;
+}
+
+void print_date_time(date_time_t* date_time)
+{
+	printf("%02d-%02d %02d:%02d\n", date_time->month, date_time->day, date_time->hour, date_time->minute);
 }

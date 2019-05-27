@@ -25,6 +25,21 @@ transaction_t* construct_transaction_overload1(char* transaction_id, char* sende
 	return transaction;
 }
 
+void destruct_transaction(transaction_t* transaction)
+{
+	destruct_date_time(transaction->date_time);
+	free(transaction);
+}
+
+void set_transaction(transaction_t* transaction, char* transaction_id, char* sender_id, char* receiver_id, double amount, date_time_t* date_time)
+{
+	set_transaction_id(transaction, transaction_id);
+	set_sender_id(transaction, sender_id);
+	set_receiver_id(transaction, receiver_id);
+	set_amount(transaction, amount);
+	set_date_time(transaction, date_time);
+}
+
 char* get_transaction_id(transaction_t* transaction)
 {
 	return transaction->transaction_id;
@@ -73,4 +88,13 @@ void set_amount(transaction_t* transaction, double amount)
 void set_date_time(transaction_t* transaction, date_time_t* date_time)
 {
 	transaction->date_time = construct_date_time_overload1(date_time->month, date_time->day, date_time->hour, date_time->minute);
+}
+
+void print_transaction(transaction_t* transaction)
+{
+	printf("Transaction ID: %s", transaction->transaction_id);
+	printf("  Sender ID: %s", transaction->sender_id);
+	printf("  Receiver ID: %s", transaction->receiver_id);
+	printf("  Amount: %f  ", transaction->amount);
+	print_date_time(transaction->date_time);
 }

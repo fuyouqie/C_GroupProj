@@ -131,6 +131,7 @@
     <ClCompile Include="linked_list.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="transaction.c" />
+    <ClCompile Include="transactions.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="encryption_algo.h" />
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="transaction.h" />
+    <ClInclude Include="transactions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

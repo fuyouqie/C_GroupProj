@@ -7,14 +7,6 @@
 
 #define MAX_CLIENT_ID_LEN 8
 #define MAX_TRANS_ID_LEN 6
-#define MONTH_START 1
-#define MONTH_END 12
-#define DAY_START 1
-#define DAY_END 31
-#define HOUR_START 0
-#define HOUR_END 23
-#define MINUTE_START 0
-#define MINUTE_END 59
 
 typedef struct transaction
 {
@@ -28,6 +20,8 @@ transaction_t;
 
 transaction_t* construct_transaction(void);
 transaction_t* construct_transaction_overload1(char*, char*, char*, double, date_time_t*);
+void destruct_transaction(transaction_t*);
+void set_transaction(transaction_t*, char*, char*, char*, double, date_time_t*);
 char* get_transaction_id(transaction_t*);
 char* get_sender_id(transaction_t*);
 char* get_receiver_id(transaction_t*);
@@ -38,3 +32,4 @@ void set_sender_id(transaction_t*, char*);
 void set_receiver_id(transaction_t*, char*);
 void set_amount(transaction_t*, double);
 void set_date_time(transaction_t*, date_time_t*);
+void print_transaction(transaction_t*);

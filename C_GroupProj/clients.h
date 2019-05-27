@@ -1,3 +1,5 @@
+#pragma once
+
 #include "client.h"
 #include "linked_list.h"
 

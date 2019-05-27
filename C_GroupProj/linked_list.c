@@ -63,10 +63,10 @@ void destruct_linked_list(linked_list_t* list)
 	while (get_next(it) != NULL)
 	{
 		it = get_next(it);
-		free(current);
+		destruct_node(current);
 		current = it;
 	}
-	free(it);
+	destruct_node(it);
 	free(list);
 }
 
@@ -166,7 +166,7 @@ int delete_by_index(linked_list_t* list, unsigned int index)
 		if (counter == index - 1)
 		{
 			current->next = current->next->next;
-			destruct_node(current->next);
+			free(current->next->data);
 			--(list->length);
 			return 1;
 		}
