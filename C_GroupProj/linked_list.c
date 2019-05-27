@@ -121,16 +121,9 @@ unsigned int get_length(linked_list_t* list)
 	return list->length;
 }
 
-unsigned int get_index(linked_list_t* list, void* data)
+iterator_t* get_iterator(linked_list_t* list, void* data)
 {
-	unsigned int i;
-	for (i = 0; i < get_length(list); i++)
-	{
-		if (equals(get_by_index(list, i), data))
-			return i;
-	}
 	
-	return -1;
 }
 
 void* get_by_index(linked_list_t* list, unsigned int index)
@@ -177,8 +170,35 @@ int delete_by_index(linked_list_t* list, unsigned int index)
 	return 0;
 }
 
-int delete_data(linked_list_t* list, void* data)
+iterator_t* erase(iterator_t* pos)
 {
-	unsigned int index = get_index(list, data);
-	return delete_by_index(list, index);
+	
+}
+
+iterator_t* begin(linked_list_t* list)
+{
+	return construct_iterator_overload1(list, 0);
+}
+
+iterator_t* end(linked_list_t* list)
+{
+	return construct_iterator_overload1(list, list->length - 1);
+}
+
+iterator_t* construct_iterator(void)
+{
+	iterator_t* it = malloc(sizeof(iterator_t));
+	it->current_list = NULL;
+	it->position = 0;
+
+	return it;
+}
+
+iterator_t* construct_iterator_overload1(linked_list_t* current_list, unsigned int position)
+{
+	iterator_t* it = malloc(sizeof(iterator_t));
+	it->current_list = current_list;
+	it->position = position;
+
+	return it;
 }
