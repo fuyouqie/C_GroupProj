@@ -33,9 +33,9 @@ void add_client(clients_t* clients, client_t client)
 	push_back(clients->client_list, &client, sizeof(client_t));
 }
 
-void remove_client(clients_t* clients, client_t client)
+int remove_client(clients_t* clients, unsigned int index)
 {
-	delete_data(clients->client_list, &client);
+	return delete_by_index(clients->client_list, index);
 }
 
 client_t* get_client_by_index(clients_t* clients, unsigned int index)
