@@ -165,8 +165,8 @@ int delete_by_index(linked_list_t* list, unsigned int index)
 	{
 		if (counter == index - 1)
 		{
-			current->next = current->next->next;
 			free(current->next->data);
+			current->next = current->next->next;
 			--(list->length);
 			return 1;
 		}
