@@ -14,13 +14,6 @@ typedef struct linked_list
 }
 linked_list_t;
 
-typedef struct iterator
-{
-	linked_list_t* current_list;
-	unsigned int position;
-}
-iterator_t;
-
 node_t* construct_node(void);
 node_t* construct_node_overload1(node_t*, void*);
 void destruct_node(node_t*);
@@ -36,11 +29,7 @@ void push_front(linked_list_t*, void*, unsigned int);
 void push_back(linked_list_t*, void*, unsigned int);
 void pop_front(linked_list_t*);
 unsigned int get_length(linked_list_t*);
-iterator_t* get_iterator(linked_list_t*, void*);
+unsigned int get_index(linked_list_t*, void*);
 void* get_by_index(linked_list_t*, unsigned int);
 int delete_by_index(linked_list_t*, unsigned int);
-iterator_t* begin(linked_list_t*);
-iterator_t* end(linked_list_t*);
-
-iterator_t* construct_iterator(void);
-iterator_t* construct_iterator_overload1(linked_list_t*, unsigned int);
+int delete_data(linked_list_t*, void*);
