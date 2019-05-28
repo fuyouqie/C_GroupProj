@@ -6,7 +6,7 @@
 clients_t* construct_clients()
 {
 	clients_t* client_list = malloc(sizeof(clients_t));
-	client_list->client_list = construct_linked_list();
+	client_list->client_list = construct_linked_list(NULL);
 	
 	return client_list;
 }

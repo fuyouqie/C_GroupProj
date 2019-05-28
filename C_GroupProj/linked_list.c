@@ -45,12 +45,13 @@ void set_next(node_t* node, node_t* next)
 	node->next = next;
 }
 
-linked_list_t* construct_linked_list(void)
+linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn)
 {
 	linked_list_t* list;
 	list = malloc(sizeof(linked_list_t));
 	list->head = NULL;
 	list->length = 0;
+	list->destruct_data_fn = destruct_data_fn;
 
 	return list;
 }
@@ -60,13 +61,15 @@ void destruct_linked_list(linked_list_t* list)
 	node_t* current = list->head;
 	node_t* it = list->head;
 
-	while (get_next(it) != NULL)
+	while (it != NULL)
 	{
 		it = get_next(it);
-		destruct_node(current);
+		if (list->destruct_data_fn != NULL)
+			list->destruct_data_fn(current->data);
+		else
+			destruct_node(current);
 		current = it;
 	}
-	destruct_node(it);
 	free(list);
 }
 

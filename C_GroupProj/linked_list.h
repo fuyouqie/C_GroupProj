@@ -1,5 +1,7 @@
 #pragma once
 
+typedef void(*destruct_data_function)(void*);
+
 typedef struct node
 {
 	void* data;
@@ -11,6 +13,7 @@ typedef struct linked_list
 {
 	node_t* head;
 	unsigned int length;
+	destruct_data_function destruct_data_fn;
 }
 linked_list_t;
 
@@ -21,7 +24,7 @@ void* get_data(node_t*);
 node_t* get_next(node_t*);
 void set_next(node_t*, node_t*);
 
-linked_list_t* construct_linked_list(void);
+linked_list_t* construct_linked_list(destruct_data_function);
 void destruct_linked_list(linked_list_t*);
 int is_list_empty(linked_list_t*);
 void push_front(linked_list_t*, void*, unsigned int);

@@ -35,6 +35,8 @@ int main(void)
 	remove_client(clients, 1);
 	print_client_list(clients);
 
+	destruct_clients(clients);
+
 	/*Test transaction*/
 	transactions_t* transactions = construct_transactions();
 	transaction_t transaction;
@@ -68,6 +70,8 @@ int main(void)
 
 	remove_transaction(transactions, 1);
 	print_transaction_list(transactions);
+
+	destruct_transactions(transactions);
 
 	return 0;
 }

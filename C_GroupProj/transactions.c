@@ -6,8 +6,8 @@
 transactions_t* construct_transactions(void)
 {
 	transactions_t* transactions = malloc(sizeof(transactions_t));
-	transactions->transaction_list = construct_linked_list();
-
+	transactions->transaction_list = construct_linked_list(&destruct_transaction);
+	
 	return transactions;
 }
 
