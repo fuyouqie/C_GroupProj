@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BankingApp.c" />
     <ClCompile Include="client.c" />
     <ClCompile Include="clients.c" />
     <ClCompile Include="C_GroupProj.c">
@@ -139,6 +140,7 @@
     <ClCompile Include="transactions.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BankingApp.h" />
     <ClInclude Include="client.h" />
     <ClInclude Include="clients.h" />
     <ClInclude Include="date_time.h" />

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "clients.h"
 #include "transactions.h"
+#include "encryption_algo.h"
 
 void tests(void)
 {
@@ -74,10 +75,32 @@ void tests(void)
 	destruct_transactions(transactions);
 }
 
+void print(char* input)
+{
+	printf("Origin: %s\n", input);
+
+	unsigned long output = hash(input);
+	printf("Cipher: %08x\n\n", output);
+}
+
+void prints()
+{
+	char input1[] = "message#/**";
+	char input2[] = "alice@#1!$^&*(";
+	char input3[] = "bobassda1sdf123";
+	char input4[] = "sdj@35%$123";
+	char input5[] = "55sd1!!sd";
+
+	print(input1);
+	print(input2);
+	print(input3);
+	print(input4);
+	print(input5);
+}
+
 int main(void)
 {
-	//TESTING GIT
-	tests();
+
 
 	return 0;
 }
