@@ -3,7 +3,7 @@
 #include "clients.h"
 #include "transactions.h"
 
-int main(void)
+void tests(void)
 {
 	/*Test client*/
 	clients_t* clients = construct_clients();
@@ -72,6 +72,12 @@ int main(void)
 	print_transaction_list(transactions);
 
 	destruct_transactions(transactions);
+}
+
+int main(void)
+{
+
+
 
 	return 0;
 }

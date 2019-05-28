@@ -6,7 +6,7 @@
 clients_t* construct_clients()
 {
 	clients_t* client_list = malloc(sizeof(clients_t));
-	client_list->client_list = construct_linked_list(NULL);
+	client_list->client_list = construct_linked_list(NULL,sizeof(client_t));
 	
 	return client_list;
 }
@@ -29,7 +29,7 @@ linked_list_t* get_client_list(clients_t* clients)
 
 void add_client(clients_t* clients, client_t client)
 {
-	push_back(clients->client_list, &client, sizeof(client_t));
+	push_back(clients->client_list, &client);
 }
 
 int remove_client(clients_t* clients, unsigned int index)

@@ -45,13 +45,14 @@ void set_next(node_t* node, node_t* next)
 	node->next = next;
 }
 
-linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn)
+linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn, unsigned int element_size)
 {
 	linked_list_t* list;
 	list = malloc(sizeof(linked_list_t));
 	list->head = NULL;
 	list->length = 0;
 	list->destruct_data_fn = destruct_data_fn;
+	list->element_size = element_size;
 
 	return list;
 }
@@ -78,11 +79,12 @@ int is_list_empty(linked_list_t* list)
 	return list->length == 0;
 }
 
-void push_front(linked_list_t* list, void* data, unsigned int size)
+void push_front(linked_list_t* list, void* data)
 {
-	void* data_d = malloc(size);
+	unsigned int element_size = get_element_size(list);
+	void* data_d = malloc(element_size);
 	unsigned int i;
-	for (i = 0; i < size; i++)
+	for (i = 0; i < element_size; i++)
 		*((char*)data_d + i) = *((char*)data + i);
 
 	node_t* node = construct_node_overload1(list->head, data_d);
@@ -90,11 +92,12 @@ void push_front(linked_list_t* list, void* data, unsigned int size)
 	++(list->length);
 }
 
-void push_back(linked_list_t* list, void* data, unsigned int size)
+void push_back(linked_list_t* list, void* data)
 {
-	void* data_d = malloc(size);
+	unsigned int element_size = get_element_size(list);
+	void* data_d = malloc(element_size);
 	unsigned int i;
-	for (i = 0; i < size; i++)
+	for (i = 0; i < element_size; i++)
 		*((char*)data_d + i) = *((char*)data + i);
 
 	node_t* node = construct_node_overload1(NULL, data_d);
@@ -117,6 +120,11 @@ void pop_front(linked_list_t* list)
 	list->head = front->next;
 	destruct_node(front);
 	--(list->length);
+}
+
+unsigned int get_element_size(linked_list_t* list)
+{
+	return list->element_size;
 }
 
 unsigned int get_length(linked_list_t* list)

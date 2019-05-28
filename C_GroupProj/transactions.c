@@ -6,7 +6,7 @@
 transactions_t* construct_transactions(void)
 {
 	transactions_t* transactions = malloc(sizeof(transactions_t));
-	transactions->transaction_list = construct_linked_list(&destruct_transaction);
+	transactions->transaction_list = construct_linked_list(&destruct_transaction, sizeof(transaction_t));
 	
 	return transactions;
 }
@@ -29,7 +29,7 @@ linked_list_t* get_transaction_list(transactions_t* transactions)
 
 void add_transaction(transactions_t* transactions, transaction_t transaction)
 {
-	push_back(transactions->transaction_list, &transaction, sizeof(transaction_t));
+	push_back(transactions->transaction_list, &transaction);
 }
 
 int remove_transaction(transactions_t* transactions, unsigned int index)
