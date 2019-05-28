@@ -77,8 +77,7 @@ void tests(void)
 int main(void)
 {
 	//TESTING GIT
-	//Another test
-	//another test
+	tests();
 
 	return 0;
 }
