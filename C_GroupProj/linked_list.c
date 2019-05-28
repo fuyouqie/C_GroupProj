@@ -126,7 +126,7 @@ unsigned int get_index(linked_list_t* list, void* data)
 	unsigned int i;
 	for (i = 0; i < get_length(list); i++)
 	{
-		if (equals(get_by_index(list, i), data))
+		if (get_by_index(list, i) == data)
 			return i;
 	}
 	

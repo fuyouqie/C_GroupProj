@@ -24,7 +24,6 @@ void set_next(node_t*, node_t*);
 linked_list_t* construct_linked_list(void);
 void destruct_linked_list(linked_list_t*);
 int is_list_empty(linked_list_t*);
-int equals(void* data_a, void* data_b);
 void push_front(linked_list_t*, void*, unsigned int);
 void push_back(linked_list_t*, void*, unsigned int);
 void pop_front(linked_list_t*);

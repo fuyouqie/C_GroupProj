@@ -17,6 +17,11 @@ void destruct_transactions(transactions_t* transactions)
 	free(transactions);
 }
 
+static int equals(transaction_t* data_a, transaction_t* data_b)
+{
+	return strcmp(data_a->transaction_id, data_b->transaction_id);
+}
+
 linked_list_t* get_transaction_list(transactions_t* transactions)
 {
 	return transactions->transaction_list;

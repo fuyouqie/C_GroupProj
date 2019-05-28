@@ -17,9 +17,9 @@ void destruct_clients(clients_t* clients)
 	free(clients);
 }
 
-int equals(void* data_a, void* data_b)
+static int equals(client_t* data_a, client_t* data_b)
 {
-	return strcmp(((client_t*)data_a)->id, ((client_t*)data_b)->id);
+	return strcmp(data_a->id, data_b->id);
 }
 
 linked_list_t* get_client_list(clients_t* clients)
