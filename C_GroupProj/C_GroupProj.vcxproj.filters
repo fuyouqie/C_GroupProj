@@ -39,6 +39,9 @@
     <ClCompile Include="transactions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="encryp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="BankingApp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="transactions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encryp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BankingApp.h">
