@@ -146,7 +146,6 @@
     <ClInclude Include="clients.h" />
     <ClInclude Include="date_time.h" />
     <ClInclude Include="encryp.h" />
-    <ClInclude Include="encryption_algo.h" />
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="transaction.h" />
     <ClInclude Include="transactions.h" />

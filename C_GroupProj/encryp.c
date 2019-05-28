@@ -2,7 +2,8 @@
 #include <string.h>
 #include "encryp.h"
 
-int main() {
+int main()
+{
 	char a[20];
 	char encrypted[50];
 	printf("Enter Password\n");
