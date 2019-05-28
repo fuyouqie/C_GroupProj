@@ -5,10 +5,10 @@
 
 clients_t* construct_clients()
 {
-	clients_t* client_list = malloc(sizeof(clients_t));
-	client_list->client_list = construct_linked_list(NULL,sizeof(client_t));
+	clients_t* clients = malloc(sizeof(clients_t));
+	clients->client_list = construct_linked_list(NULL,sizeof(client_t));
 	
-	return client_list;
+	return clients;
 }
 
 void destruct_clients(clients_t* clients)
