@@ -65,5 +65,13 @@
     <Filter Include="source">
       <UniqueIdentifier>{1a333035-7557-4e00-8797-617cbdb15daa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="make">
+      <UniqueIdentifier>{cceb4ad6-e5dd-4a5c-8bd6-da366353e7cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Makefile.txt">
+      <Filter>make</Filter>
+    </Text>
   </ItemGroup>
 </Project>
