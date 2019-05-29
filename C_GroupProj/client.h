@@ -13,9 +13,11 @@ typedef struct client
 }
 client_t;
 
-client_t* construct_client();
+client_t* construct_client(void);
 client_t* construct_client_overload1(char*, char*, double);
 void destruct_client(client_t*);
+int matches_id_pw(client_t*, char*, char*);
+int matches_id(client_t*, char*);
 void set_client(client_t*, char*, char*, double);
 char* get_id(client_t*);
 void set_id(client_t*, char*);

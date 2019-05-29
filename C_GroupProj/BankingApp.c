@@ -45,7 +45,7 @@ void menu_1(clients_t* clients)
 		switch (option)
 		{
 			case 1:
-				login(clients);
+				login_client(clients);
 				break;
 			case 2:
 				register_client(clients);
@@ -170,27 +170,36 @@ int read_client_id_pw(char* id, char* pw)
 	return check_result;
 }
 
-void login_(clients_t* clients, client_t* current_client, char* id, char* pw)
+void login(clients_t* clients, char* id, char* pw)
 {
+	client_t* current_client = NULL;
 	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
+
 	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
 	sprintf(pw_cipher, "%08lx", pw_hash);
 
+	current_client = login_check(clients, id, pw_cipher);
+	if (current_client == NULL)
+		printf("Incorrect client ID or password\n");
+	else
+	{
+		printf("Logged in as client %s\n", current_client->id);
+		/*menu2*/
+	}
 }
 
-void login(clients_t* clients)
+void login_client(clients_t* clients)
 {
 	printf("Login\n");
 
 	char id[MAX_CLIENT_ID_LEN + 1];
 	char pw[MAX_CLIENT_PW_LEN + 1];
-	client_t* current_client = NULL;
 
 	int read_result = read_client_id_pw(id, pw);
 	switch (read_result)
 	{
 		case '1':
-			login_(clients, current_client, id, pw);
+			login(clients, id, pw);
 			break;
 		case '2':
 			printf("Incorrect ID format\n");
@@ -205,8 +214,51 @@ void login(clients_t* clients)
 	}
 }
 
+void regist(clients_t* clients, char* id, char* pw)
+{
+	client_t* current_client = NULL;
+	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
+
+	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
+	sprintf(pw_cipher, "%08lx", pw_hash);
+
+	if (!register_check(clients, id))
+		printf("Client ID already exists\n");
+	else
+	{
+		printf("New client registered %s\n", id);
+		client_t temp;
+		set_client(&temp, id, pw_cipher, 0.0);
+		add_client(clients, temp);
+		current_client = get_client_by_index(clients, get_length(clients->client_list) - 1);
+		/*write to db*/
+		/*menu2*/
+	}
+}
+
 void register_client(clients_t* clients)
 {
+	printf("Register\n");
+	char id[MAX_CLIENT_ID_LEN + 1];
+	char pw[MAX_CLIENT_PW_LEN + 1];
+
+	int read_result = read_client_id_pw(id, pw);
+	switch (read_result)
+	{
+		case '1':
+			regist(clients, id, pw);
+			break;
+		case '2':
+			printf("Incorrect ID format\n");
+			break;
+		case '3':
+			printf("Incorrect password format\n");
+			break;
+		case '4':
+			printf("Incorrect ID and password format\n");
+			break;
+		default:;
+	}
 
 }
 

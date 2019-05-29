@@ -59,6 +59,31 @@ client_t* get_client_by_id(clients_t* clients, char* id)
 	return temp;
 }
 
+client_t* login_check(clients_t* clients, char* id, char* pw_cipher)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(clients->client_list); i++)
+	{
+		client_t* temp = get_client_by_index(clients, i);
+		if (matches_id_pw(temp, id, pw_cipher))
+			return temp;
+	}
+
+	return NULL;
+}
+
+int register_check(clients_t* clients, char* id)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(clients->client_list); i++)
+	{
+		if (matches_id(get_client_by_index(clients, i), id))
+			return 0;
+	}
+
+	return 1;
+}
+
 void print_client_list(clients_t* clients)
 {
 	node_t* current = (clients->client_list->head);

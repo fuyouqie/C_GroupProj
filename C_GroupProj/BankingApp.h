@@ -24,7 +24,12 @@ void menu_1_print_menu(void);
 unsigned int menu_1_read_option(void);
 void menu_1(clients_t*);
 
-void login(clients_t*);
+int check_client_id_format(const char*);
+int check_client_pw_format(const char*);
+int read_client_id_pw(char*, char*);
+void login(clients_t*, char*, char*);
+void login_client(clients_t*);
+void regist(clients_t*, char*, char*);
 void register_client(clients_t*);
 void exit_program(void);
 void error(void);

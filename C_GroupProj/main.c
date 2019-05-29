@@ -6,7 +6,17 @@
 #include "encrypt.h"
 #include "BankingApp.h"
 
-void test_oop(void)
+void test_oop_2(transactions_t* transactions)
+{
+	print_transaction_list(transactions);
+
+	remove_transaction(transactions, 1);
+	print_transaction_list(transactions);
+
+	destruct_transactions(transactions);
+}
+
+transactions_t* test_oop(void)
 {
 	/*Test client*/
 	clients_t* clients = construct_clients();
@@ -71,10 +81,7 @@ void test_oop(void)
 
 	print_transaction_list(transactions);
 
-	remove_transaction(transactions, 1);
-	print_transaction_list(transactions);
-
-	destruct_transactions(transactions);
+	return transactions;
 }
 
 void test_enc()
@@ -88,7 +95,7 @@ void test_enc()
 
 int main(void)
 {
-	test_enc();
+	test_oop_2(test_oop());
 
 	return 0;
 }

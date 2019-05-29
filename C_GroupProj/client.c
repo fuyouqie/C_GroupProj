@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-client_t* construct_client()
+client_t* construct_client(void)
 {
 	client_t* client = malloc(sizeof(client_t));
 	client->balance = 0.0;
@@ -24,6 +24,22 @@ client_t* construct_client_overload1(char* id, char* pw_cipher, double balance)
 void destruct_client(client_t* client)
 {
 	free(client);
+}
+
+int matches_id_pw(client_t* client, char* id, char* pw_cipher)
+{
+	if (strcmp(client->id, id) && strcmp(client->pw_cipher, pw_cipher))
+		return 1;
+
+	return 0;
+}
+
+int matches_id(client_t* client, char* id)
+{
+	if (strcmp(client->id, id))
+		return 1;
+	
+	return 0;
 }
 
 void set_client(client_t* client, char* id, char* pw_cipher, double balance)
