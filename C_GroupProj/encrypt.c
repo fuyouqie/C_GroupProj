@@ -1,18 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "encryp.h"
+#include "encrypt.h"
 
-int main()
-{
-	char a[20];
-	char encrypted[50];
-	printf("Enter Password\n");
-	scanf("%s", a);
-	encrypt(a, &encrypted);
-	printf("After encryption:  %s\n", encrypted);
-
-	return 0;
-}
 
 
 int chartoasc(char c)

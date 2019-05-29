@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "clients.h"
 #include "transactions.h"
-#include "encryp.h"
+#include "encrypt.h"
 
 void tests(void)
 {
@@ -81,8 +81,8 @@ void test_enc()
 	char encrypted[50];
 	printf("Enter Password\n");
 	scanf("%s", a);
-	encrypt(a, &encrypted);
-	printf("After encryption:  %s\n", encrypted);
+	encrypt(a, encrypted);
+	printf("After encryption:\n%s\n", encrypted);
 }
 
 
