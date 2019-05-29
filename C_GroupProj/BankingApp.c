@@ -81,7 +81,7 @@ int check_client_pw_format(const char* buffer)
 		return 0;
 
 	int result = 0;
-	//contains numbers
+	/*contains numbers*/
 	unsigned int i;
 	for (i = 0; i < length; i++)
 	{
@@ -92,7 +92,7 @@ int check_client_pw_format(const char* buffer)
 		}
 	}
 
-	//contains upper case
+	/*contains upper case*/
 	for (i = 0; i < length; i++)
 	{
 		if (buffer[i] > ASCII_UPPER_A && buffer[i] < ASCII_UPPER_Z)
@@ -102,7 +102,7 @@ int check_client_pw_format(const char* buffer)
 		}
 	}
 
-	//contains lower case
+	/*contains lower case*/
 	for (i = 0; i < length; i++)
 	{
 		if (buffer[i] > ASCII_LOWER_A && buffer[i] < ASCII_LOWER_Z)
@@ -112,7 +112,7 @@ int check_client_pw_format(const char* buffer)
 		}
 	}
 
-	//contains special character
+	/*contains special character*/
 	for (i = 0; i < length; i++)
 	{
 		if (buffer[i] == ASCII_SPECIAL_1 || 
@@ -173,8 +173,8 @@ int read_client_id_pw(char* id, char* pw)
 void login_(clients_t* clients, client_t* current_client, char* id, char* pw)
 {
 	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
-	unsigned long pw_hash = encrypt(pw, MAX_CLIENT_PW_CIPHER_LEN);
-	sprintf(pw_cipher, "%08x", pw_hash);
+	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
+	sprintf(pw_cipher, "%08lx", pw_hash);
 
 }
 

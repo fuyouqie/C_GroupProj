@@ -70,8 +70,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Makefile.txt">
+    <None Include="Makefile">
       <Filter>make</Filter>
-    </Text>
+    </None>
   </ItemGroup>
 </Project>

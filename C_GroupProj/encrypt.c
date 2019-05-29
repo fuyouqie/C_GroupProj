@@ -30,11 +30,10 @@ char asctochar(int a)
 }
 
 
-unsigned long encrypt(const char* input, const unsigned int HASH_SIZE)
+unsigned long encrypt(const char* input, const unsigned int input_len, const unsigned int HASH_SIZE)
 {
 	char inputBuff[50];
 	char cipherBuff[50];
-	int len = 0;
 	int i = 0;
 	int asc = 0;
 	char ch = 0;
@@ -43,14 +42,14 @@ unsigned long encrypt(const char* input, const unsigned int HASH_SIZE)
 	memset(inputBuff, 0, sizeof(inputBuff));
 	memset(cipherBuff, 0, sizeof(cipherBuff));
 	strcpy(inputBuff, input);
-	len = strlen(inputBuff);
-	for (i = 0; i < len; i++)
+	for (i = 0; i < input_len; i++)
 	{
 		ch = inputBuff[i];
 		asc = chartoasc(ch);
 		x = xor (asc);
 		cipherBuff[i] = asctochar(x);
 	}
+	cipherBuff[i] = '\0';
 
 	char* hash = cipherBuff;
 

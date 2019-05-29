@@ -17,10 +17,12 @@ void destruct_clients(clients_t* clients)
 	free(clients);
 }
 
+/*
 static int equals(client_t* data_a, client_t* data_b)
 {
 	return strcmp(data_a->id, data_b->id);
 }
+*/
 
 linked_list_t* get_client_list(clients_t* clients)
 {

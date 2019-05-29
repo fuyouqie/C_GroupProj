@@ -81,8 +81,8 @@ void test_enc()
 	char a[20];
 	printf("Enter Password\n");
 	scanf("%s", a);
-	unsigned long hash = encrypt(a, MAX_CLIENT_PW_CIPHER_LEN);
-	printf("After encryption:  %08x\n", hash);
+	unsigned long hash = encrypt(a, strlen(a), MAX_CLIENT_PW_CIPHER_LEN);
+	printf("After encryption:  %08lx\n", hash);
 }
 
 int main(void)
