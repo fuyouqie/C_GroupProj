@@ -125,7 +125,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BankingApp.c" />
+    <ClCompile Include="BankingApp.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="client.c" />
     <ClCompile Include="clients.c" />
     <ClCompile Include="C_GroupProj.c">
