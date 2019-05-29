@@ -8,11 +8,12 @@
 void BankingApp(void)
 {
 	clients_t* clients = construct_clients();
+	load_client_db(clients);
 
-	menu_1(clients);
+	start_menu(clients);
 }
 
-void menu_1_print_menu(void)
+void print_start_menu(void)
 {
 	printf("\n"
 	"1.    Login\n"
@@ -21,24 +22,24 @@ void menu_1_print_menu(void)
 	"Enter option(1 - 4)> \n");
 }
 
-unsigned int menu_1_read_option(void)
+unsigned int start_menu_read_option(void)
 {
-	menu_1_print_menu();
+	print_start_menu();
 
 	int option;
 	if (scanf("%d", &option) != 1)
 	{
 		while ((getchar()) != '\n');
 		printf("Input type mismatch\n");
-		return menu_1_read_option();
+		return start_menu_read_option();
 	}
 
 	return option;
 }
 
-void menu_1(clients_t* clients)
+void start_menu(clients_t* clients)
 {
-	unsigned int option = menu_1_read_option();
+	unsigned int option = start_menu_read_option();
 
 	while (option != 3)
 	{
@@ -54,8 +55,94 @@ void menu_1(clients_t* clients)
 				error();
 		}
 
-		option = menu_1_read_option();
+		option = start_menu_read_option();
 	}
+}
+
+void print_client_menu(void)
+{
+	printf("\n"
+		   "1.    View Account Detail\n"
+		   "2.    Transfer\n"
+		   "3.    Deposit\n"
+		   "4.    Withdraw\n"
+		   "5.    Change Password\n"
+		   "6.    Delete Account\n"
+		   "7.    Exit Program\n\n"
+		   "Enter option(1 - 7)> \n");
+}
+
+unsigned int client_menu_read_option(void)
+{
+	print_client_menu();
+
+	int option;
+	if (scanf("%d", &option) != 1)
+	{
+		while ((getchar()) != '\n');
+		printf("Input type mismatch\n");
+		return client_menu_read_option();
+	}
+
+	return option;
+}
+
+void client_menu(client_t* current, transactions_t* transactions)
+{
+	unsigned int option = client_menu_read_option();
+
+	while (option != 7)
+	{
+		switch (option)
+		{
+			case 1:
+				view_account(current, transactions);
+				break;
+			case 2:
+				//register_client(clients);
+				break;
+			case 3:
+				//register_client(clients);
+				break;
+			case 4:
+				//register_client(clients);
+				break;
+			case 5:
+				//register_client(clients);
+				break;
+			case 6:
+				//register_client(clients);
+				break;
+			case 7:
+				exit_program();
+				break;
+			default:
+				error();
+		}
+
+		option = client_menu_read_option();
+	}
+}
+
+void print_client_transactions(client_t* client, transactions_t* transactions)
+{
+	node_t* current = (transactions->transaction_list->head);
+	while (current != NULL)
+	{
+		transaction_t* transaction = (transaction_t*)get_data(current);
+
+		if(strcmp(transaction->sender_id, client->id) || strcmp(transaction->receiver_id, client->id))
+			print_transaction(transaction);
+		current = get_next(current);
+	}
+}
+
+void view_account(client_t* current, transactions_t* transactions)
+{
+	printf("#Account Information\n");
+	print_client(current);
+	printf("#Transaction Details\n");
+	print_client_transactions(current, transactions);
 }
 
 int check_client_id_format(const char* buffer)
@@ -184,7 +271,8 @@ void login(clients_t* clients, char* id, char* pw)
 	else
 	{
 		printf("Logged in as client %s\n", current_client->id);
-		/*menu2*/
+		transactions_t* transactions = construct_transactions();
+		client_menu(current_client, transactions);
 	}
 }
 
@@ -231,8 +319,10 @@ void regist(clients_t* clients, char* id, char* pw)
 		set_client(&temp, id, pw_cipher, 0.0);
 		add_client(clients, temp);
 		current_client = get_client_by_index(clients, get_length(clients->client_list) - 1);
-		/*write to db*/
-		/*menu2*/
+		save_client_db(clients);
+		
+		transactions_t* transactions = construct_transactions();
+		client_menu(current_client, transactions);
 	}
 }
 
@@ -262,12 +352,57 @@ void register_client(clients_t* clients)
 
 }
 
+void save_client_db(clients_t* clients)
+{
+	FILE* fp;
+	fp = fopen(CLIENT_DB, "w+");
+
+	fprintf(fp, "Client ID      PW_Cipher      Balance\n");
+	unsigned int i;
+	for (i = 0; i < get_length(clients->client_list); i++)
+	{
+		client_t* current = get_client_by_index(clients, i);
+		fprintf(fp, "%s   %s   %f\n", current->id, current->pw_cipher, current->balance);
+	}
+	fclose(fp);
+}
+
+int load_client(FILE* fp, client_t* temp)
+{
+	int result = fscanf(fp, "%s   %s   %lf\n", temp->id, temp->pw_cipher, &(temp->balance));
+
+	return result;
+}
+
+void load_client_db(clients_t* clients)
+{
+	FILE* fp;
+	fp = fopen(CLIENT_DB, "r");
+	if (fp == NULL)
+	{
+		printf("Read error\n");
+		return;
+	}
+
+	destruct_clients(clients);
+	clients = construct_clients();
+
+	fscanf(fp, "%*[^\n]");
+
+	client_t temp;
+
+	while (load_client(fp, &temp) == CLIENT_FIELD_COUNT)
+		add_client(clients, temp);
+
+	fclose(fp);
+}
+
 void exit_program(void)
 {
-	printf("exit\n");
+	printf("Program ends\n");
 }
 
 void error(void)
 {
-	printf("error\n");
+	printf("Option not found\n");
 }

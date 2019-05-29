@@ -7,6 +7,7 @@
 
 #define MAX_CLIENT_ID_LEN 8
 #define MAX_TRANS_ID_LEN 6
+#define TRANSACTION_DB "transaction_db.txt"
 
 typedef struct transaction
 {

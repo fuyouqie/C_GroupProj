@@ -65,13 +65,24 @@
     <Filter Include="source">
       <UniqueIdentifier>{1a333035-7557-4e00-8797-617cbdb15daa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="make">
+    <Filter Include="DB">
+      <UniqueIdentifier>{4427292c-fbb2-4393-af1c-d282c960f144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Make">
       <UniqueIdentifier>{cceb4ad6-e5dd-4a5c-8bd6-da366353e7cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile">
-      <Filter>make</Filter>
+      <Filter>Make</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="client_db.txt">
+      <Filter>DB</Filter>
+    </Text>
+    <Text Include="transaction_db.txt">
+      <Filter>DB</Filter>
+    </Text>
   </ItemGroup>
 </Project>

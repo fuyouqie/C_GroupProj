@@ -20,9 +20,16 @@
 
 void BankingApp(void);
 
-void menu_1_print_menu(void);
-unsigned int menu_1_read_option(void);
-void menu_1(clients_t*);
+void print_start_menu(void);
+unsigned int start_menu_read_option(void);
+void start_menu(clients_t*);
+
+void print_client_menu(void);
+unsigned int client_menu_read_option(void);
+void client_menu(client_t*, transactions_t*);
+
+void print_client_transactions(client_t*, transactions_t*);
+void view_account(client_t*, transactions_t*);
 
 int check_client_id_format(const char*);
 int check_client_pw_format(const char*);
@@ -31,5 +38,10 @@ void login(clients_t*, char*, char*);
 void login_client(clients_t*);
 void regist(clients_t*, char*, char*);
 void register_client(clients_t*);
+
+void save_client_db(clients_t*);
+int load_client(FILE*, client_t*);
+void load_client_db(clients_t*);
+
 void exit_program(void);
 void error(void);

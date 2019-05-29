@@ -4,6 +4,8 @@
 #define MIN_CLIENT_PW_LEN 8
 #define MAX_CLIENT_PW_LEN 12
 #define MAX_CLIENT_PW_CIPHER_LEN 8
+#define CLIENT_DB "client_db.txt"
+#define CLIENT_FIELD_COUNT 3
 
 typedef struct client
 {
