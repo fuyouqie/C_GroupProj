@@ -79,10 +79,9 @@ void test_oop(void)
 void test_enc()
 {
 	char a[20];
-	char encrypted[50];
 	printf("Enter Password\n");
 	scanf("%s", a);
-	unsigned long hash = encrypt(a, encrypted, MAX_CLIENT_PW_CIPHER_LEN);
+	unsigned long hash = encrypt(a, MAX_CLIENT_PW_CIPHER_LEN);
 	printf("After encryption:  %08x\n", hash);
 }
 
