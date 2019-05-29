@@ -62,5 +62,6 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 	char size_str[30];
 	sprintf(size_str, "%f", size);
 
-	return hash_value % atoi(size_str);
+	
+	return hash_value % atol(size_str);
 }
