@@ -1,19 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "encryp.h"
-
-int main()
-{
-	char a[20];
-	char encrypted[50];
-	printf("Enter Password\n");
-	scanf("%s", a);
-	encrypt(a, &encrypted);
-	printf("After encryption:  %s\n", encrypted);
-
-	return 0;
-}
-
+#include <math.h>
+#include "encrypt.h"
 
 int chartoasc(char c)
 {
@@ -42,7 +30,7 @@ char asctochar(int a)
 }
 
 
-int encrypt(const char *input, char* cipher)
+unsigned long encrypt(const char* input, const unsigned int HASH_SIZE)
 {
 	char inputBuff[50];
 	char cipherBuff[50];
@@ -63,7 +51,12 @@ int encrypt(const char *input, char* cipher)
 		x = xor (asc);
 		cipherBuff[i] = asctochar(x);
 	}
-	strcpy(cipher, cipherBuff);
 
-	return 0;
+	char* hash = cipherBuff;
+
+	unsigned long hash_value;
+	for (hash_value = 0; *hash != '\0'; ++hash)
+		hash_value = *hash + 31 * hash_value;
+
+	return hash_value % (int)(pow(16, HASH_SIZE) + 0.5);
 }

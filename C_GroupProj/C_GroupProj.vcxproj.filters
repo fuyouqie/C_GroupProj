@@ -16,9 +16,6 @@
     <ClCompile Include="date_time.c">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="encryp.c">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="linked_list.c">
       <Filter>source</Filter>
     </ClCompile>
@@ -29,6 +26,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="transactions.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt.c">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,9 +45,6 @@
     <ClInclude Include="date_time.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="encryp.h">
-      <Filter>header</Filter>
-    </ClInclude>
     <ClInclude Include="linked_list.h">
       <Filter>header</Filter>
     </ClInclude>
@@ -55,6 +52,9 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="transactions.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="encrypt.h">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>

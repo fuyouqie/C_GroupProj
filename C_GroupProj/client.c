@@ -40,7 +40,7 @@ char* get_id(client_t* client)
 
 void set_id(client_t* client, char* id)
 {
-	memset(client->id, 0, MAX_CLIENT_ID_LEN + 1);
+	memset(client->id, 0, CLIENT_ID_LEN + 1);
 	strcpy(client->id, id);
 }
 

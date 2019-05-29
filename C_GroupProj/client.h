@@ -1,11 +1,13 @@
 #pragma once
 
-#define MAX_CLIENT_ID_LEN 8
-#define MAX_CLIENT_PW_CIPHER_LEN 16
+#define CLIENT_ID_LEN 8
+#define MIN_CLIENT_PW_LEN 8
+#define MAX_CLIENT_PW_LEN 12
+#define MAX_CLIENT_PW_CIPHER_LEN 8
 
 typedef struct client
 {
-	char id[MAX_CLIENT_ID_LEN + 1];
+	char id[CLIENT_ID_LEN + 1];
 	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
 	double balance;
 }

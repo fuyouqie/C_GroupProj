@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include "clients.h"
 #include "transactions.h"
-#include "encryp.h"
+#include "encrypt.h"
+#include "BankingApp.h"
 
-void tests(void)
+void test_oop(void)
 {
 	/*Test client*/
 	clients_t* clients = construct_clients();
@@ -81,10 +82,9 @@ void test_enc()
 	char encrypted[50];
 	printf("Enter Password\n");
 	scanf("%s", a);
-	encrypt(a, &encrypted);
-	printf("After encryption:  %s\n", encrypted);
+	unsigned long hash = encrypt(a, encrypted, MAX_CLIENT_PW_CIPHER_LEN);
+	printf("After encryption:  %08x\n", hash);
 }
-
 
 int main(void)
 {
