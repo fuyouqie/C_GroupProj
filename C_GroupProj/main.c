@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "clients.h"
 #include "transactions.h"
 #include "encrypt.h"

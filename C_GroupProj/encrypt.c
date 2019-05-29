@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include "encrypt.h"
@@ -34,7 +35,7 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 {
 	char inputBuff[50];
 	char cipherBuff[50];
-	int i = 0;
+	unsigned int i = 0;
 	int asc = 0;
 	char ch = 0;
 	int x = 0;
@@ -57,5 +58,9 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 	for (hash_value = 0; *hash != '\0'; ++hash)
 		hash_value = *hash + 31 * hash_value;
 
-	return hash_value % (int)(pow(16, HASH_SIZE) + 0.5);
+	double size = pow(16, HASH_SIZE);
+	char size_str[30];
+	sprintf(size_str, "%f", size);
+
+	return hash_value % atoi(size_str);
 }
