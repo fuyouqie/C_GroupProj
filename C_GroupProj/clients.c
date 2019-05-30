@@ -45,7 +45,7 @@ client_t* get_client_by_id(clients_t* clients, char* id)
 	for (i = 0; i < get_length(clients->client_list); i++)
 	{
 		temp = get_client_by_index(clients, i);
-		if (strcmp(get_client_id(temp), id))
+		if (!strcmp(get_client_id(temp), id))
 			return temp;
 	}
 

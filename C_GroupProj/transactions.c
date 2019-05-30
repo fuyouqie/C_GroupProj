@@ -45,7 +45,7 @@ transaction_t* get_transaction_by_id(transactions_t* transactions, char* transac
 	for (i = 0; i < get_length(transactions->transaction_list); i++)
 	{
 		temp = get_transaction_by_index(transactions, i);
-		if (strcmp(get_transaction_id(temp), transaction_id))
+		if (!strcmp(get_transaction_id(temp), transaction_id))
 			return temp;
 	}
 

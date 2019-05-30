@@ -3,7 +3,7 @@
 #include <math.h>
 #include "BankingApp.h"
 
-/*
+
 void test_oop_2(transactions_t* transactions)
 {
 	print_transaction_list(transactions);
@@ -93,7 +93,7 @@ void test_enc()
 	unsigned long hash = encrypt(a, strlen(a), MAX_CLIENT_PW_CIPHER_LEN);
 	printf("After encryption:  %08lx\n", hash);
 }
-*/
+
 
 int main(void)
 {

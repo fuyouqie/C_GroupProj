@@ -42,7 +42,7 @@ void set_transaction(transaction_t* transaction, char* transaction_id, char* sen
 
 int matches_transaction_id(transaction_t* transaction, char* id)
 {
-	if (strcmp(transaction->transaction_id, id))
+	if (!strcmp(transaction->transaction_id, id))
 		return 1;
 
 	return 0;
@@ -103,6 +103,6 @@ void print_transaction(transaction_t* transaction)
 	printf("Transaction ID: %s", transaction->transaction_id);
 	printf("  Sender ID: %s", transaction->sender_id);
 	printf("  Receiver ID: %s", transaction->receiver_id);
-	printf("  Amount: %f  ", transaction->amount);
+	printf("  Amount: %0.2f  ", transaction->amount);
 	print_date_time(transaction->date_time);
 }
