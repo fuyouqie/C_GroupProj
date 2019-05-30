@@ -95,5 +95,5 @@ void print_client(client_t* client)
 {
 	printf("ID: %s", client->id);
 	printf("  PW_cipher: %s", client->pw_cipher);
-	printf("  Balance: %f\n", client->balance);
+	printf("  Balance: %0.2f\n", client->balance);
 }

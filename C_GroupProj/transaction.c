@@ -42,7 +42,7 @@ void set_transaction(transaction_t* transaction, char* transaction_id, char* sen
 
 int matches_transaction_id(transaction_t* transaction, char* id)
 {
-	if (!strcmp(transaction->transaction_id, id))
+	if (strcmp(transaction->transaction_id, id) == 0)
 		return 1;
 
 	return 0;
