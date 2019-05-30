@@ -13,7 +13,7 @@
 #define ASCII_LOWER_Z 122
 #define ASCII_SPECIAL_1 33  /*  !  */
 #define ASCII_SPECIAL_2 64  /*  @  */
-#define ASCII_SPECIAL_3 33  /*  #  */
+#define ASCII_SPECIAL_3 35  /*  #  */
 #define ASCII_SPECIAL_4 36  /*  $  */
 #define ASCII_SPECIAL_5 37  /*  %  */
 #define ASCII_SPECIAL_6 94  /*  ^  */
