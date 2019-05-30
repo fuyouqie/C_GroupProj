@@ -17,13 +17,6 @@ void destruct_transactions(transactions_t* transactions)
 	free(transactions);
 }
 
-/*
-static int equals(transaction_t* data_a, transaction_t* data_b)
-{
-	return strcmp(data_a->transaction_id, data_b->transaction_id);
-}
-*/
-
 linked_list_t* get_transaction_list(transactions_t* transactions)
 {
 	return transactions->transaction_list;
@@ -57,6 +50,18 @@ transaction_t* get_transaction_by_id(transactions_t* transactions, char* transac
 	}
 
 	return temp;
+}
+
+int get_transaction_index_by_id(transactions_t* transactions, char* transaction_id)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(transactions->transaction_list); i++)
+	{
+		if (matches_transaction_id(get_transaction_by_index(transactions, i), transaction_id))
+			return i;
+	}
+
+	return -1;
 }
 
 void print_transaction_list(transactions_t* transactions)

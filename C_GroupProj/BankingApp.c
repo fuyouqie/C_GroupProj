@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "clients.h"
-#include "transactions.h"
-#include "encrypt.h"
+
 #include "BankingApp.h"
 
 void BankingApp(void)
 {
 	clients_t* clients = construct_clients();
-	load_client_db(clients);
+	transactions_t* transactions = construct_transactions();
 
-	start_menu(clients);
+	load_client_db(clients);
+	load_transaction_db(transactions);
+
+	start_menu(clients, transactions);
+
+	destruct_clients(clients);
+	destruct_transactions(transactions);
 }
 
 
@@ -39,7 +43,7 @@ int start_menu_read_option(void)
 	return option;
 }
 
-void start_menu(clients_t* clients)
+void start_menu(clients_t* clients, transactions_t* transactions)
 {
 	int option = start_menu_read_option();
 
@@ -48,10 +52,10 @@ void start_menu(clients_t* clients)
 		switch (option)
 		{
 			case 1:
-				login_client(clients);
+				login_client(clients, transactions);
 				break;
 			case 2:
-				register_client(clients);
+				register_client(clients, transactions);
 				break;
 			default:
 				error();
@@ -70,9 +74,10 @@ void print_client_menu(void)
 		   "3.    Deposit\n"
 		   "4.    Withdraw\n"
 		   "5.    Change Password\n"
-		   "6.    Delete Account\n"
-		   "7.    Exit Program\n\n"
-		   "Enter option(1 - 7)> \n");
+		   "6.    Cancel Client\n"
+		   "7.    Logout\n"
+		   "8.    Exit Program\n\n"
+		   "Enter option(1 - 8)> \n");
 }
 
 int client_menu_read_option(void)
@@ -94,7 +99,7 @@ void client_menu(client_t* current, clients_t* clients, transactions_t* transact
 {
 	int option = client_menu_read_option();
 
-	while (option != 7)
+	while (option != 8)
 	{
 		switch (option)
 		{
@@ -102,26 +107,29 @@ void client_menu(client_t* current, clients_t* clients, transactions_t* transact
 				view_account(current, transactions);
 				break;
 			case 2:
-				//register_client(clients);
+				transfer(current, clients, transactions);
 				break;
 			case 3:
-				//register_client(clients);
+				deposit(current, clients);
 				break;
 			case 4:
-				//register_client(clients);
+				withdraw(current, clients);
 				break;
 			case 5:
-				//register_client(clients);
+				change_pw(current, clients);
 				break;
 			case 6:
-				//register_client(clients);
+				option = cancel_client(current, clients, transactions);
 				break;
 			case 7:
-				exit_program();
+				option = logout(current);
 				break;
 			default:
 				error();
 		}
+
+		if (option == -6 || option == -7)
+			break;
 
 		option = client_menu_read_option();
 	}
@@ -159,16 +167,16 @@ void transfer(client_t* current, clients_t* clients, transactions_t* transaction
 
 	switch (receiver_check)
 	{
-		case '1':
-			transfer_amount(current, get_client_by_id(clients, receiver_id), transactions);
+		case 1:
+			transfer_amount(current, get_client_by_id(clients, receiver_id), transactions, clients);
 			break;
-		case '2':
+		case 2:
 			printf("Incorrect ID format\n");
 			break;
-		case '3':
+		case 3:
 			printf("Receiver cannot be yourself\n");
 			break;
-		case '4':
+		case 4:
 			printf("Receiver ID not found\n");
 			break;
 		default:;
@@ -190,7 +198,7 @@ int check_receiver(client_t* current, clients_t* clients, transactions_t* transa
 	return 1;
 }
 
-void transfer_amount(client_t* sender, client_t* receiver, transactions_t* transactions)
+void transfer_amount(client_t* sender, client_t* receiver, transactions_t* transactions, clients_t* clients)
 {
 	double amount = 0.0;
 	int read_result = read_amount(&amount);
@@ -199,7 +207,11 @@ void transfer_amount(client_t* sender, client_t* receiver, transactions_t* trans
 		printf("Input type mismatch\n");
 	else
 	{
-		if (!check_amount(sender, amount))
+		int amount_result = check_amount(sender, amount);
+
+		if(amount_result == 2)
+			printf("Amount must be greater than 0\n");
+		else if (amount_result == 3)
 			printf("Not enough balance\n");
 		else
 		{
@@ -208,12 +220,18 @@ void transfer_amount(client_t* sender, client_t* receiver, transactions_t* trans
 
 			srand(atoi(get_client_id(sender)));
 			transaction_t transaction;
+
 			char transaction_id[TRANSACTION_ID_LEN + 1];
 			generate_transaction_id(transaction_id);
+
 			date_time_t date_time;
 			generate_date_time(&date_time);
+
 			set_transaction(&transaction, transaction_id, get_client_id(sender), get_client_id(receiver), amount, &date_time);
 			add_transaction(transactions, transaction);
+
+			save_client_db(clients);
+			save_transaction_db(transactions);
 		}
 	}
 }
@@ -259,12 +277,147 @@ int read_amount(double* amount)
 
 int check_amount(client_t* sender, double amount)
 {
+	if (amount <= 0)
+		return 2;
+
 	if (get_balance(sender) < amount)
-		return 0;
+		return 3;
 
 	return 1;
 }
 
+
+void deposit(client_t* current, clients_t* clients)
+{
+	printf("Deposit Money\n");
+
+	double amount = 0.0;
+	int read_result = read_amount(&amount);
+
+	if (!read_result)
+		printf("Input type mismatch\n");
+	else
+	{
+		if(amount <= 0)
+			printf("Amount must be greater than 0\n");
+		else
+		{
+			increase_balance(current, amount);
+			save_client_db(clients);
+		}
+	}
+}
+
+
+void withdraw(client_t* current, clients_t* clients)
+{
+	printf("Withdraw Money\n");
+
+	double amount = 0.0;
+	int read_result = read_amount(&amount);
+
+	if (!read_result)
+		printf("Input type mismatch\n");
+	else
+	{
+		int amount_result = check_amount(current, amount);
+
+		if (amount_result == 2)
+			printf("Amount must be greater than 0\n");
+		else if (amount_result == 3)
+			printf("Not enough balance\n");
+		else
+		{
+			decrease_balance(current, amount);
+			save_client_db(clients);
+		}
+	}
+}
+
+
+void change_pw(client_t* current, clients_t* clients)
+{
+	printf("Change password\n");
+	
+	char current_pw[MAX_CLIENT_PW_LEN + 1];
+
+	int read_result = read_client_pw(current_pw);
+	if(!read_result)
+		printf("Incorrect password format\n");
+	else
+	{
+		char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
+		encrypt_pw(current_pw, pw_cipher);
+		if (!strcmp(get_pw_cipher(current), pw_cipher))
+			printf("Incorrect password\n");
+		else
+		{
+			change_to_new_pw(current);
+			save_client_db(clients);
+		}
+	}
+}
+
+void change_to_new_pw(client_t* current)
+{
+	printf("Password change allowed, enter new password\n");
+	char new_pw[MAX_CLIENT_PW_LEN + 1];
+
+	int read_result = read_client_pw(new_pw);
+	if (!read_result)
+		printf("Incorrect password format\n");
+	else
+	{
+		char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
+		encrypt_pw(new_pw, pw_cipher);
+		set_pw_cipher(current, pw_cipher);
+	}
+}
+
+
+int cancel_client(client_t* current, clients_t* clients, transactions_t* transactions)
+{
+	printf("Cancel client\n");
+
+	char* client_id = get_client_id(current);
+	printf("Client %s cancelled\n", client_id);
+
+	remove_client(clients, get_client_index_by_id(clients, client_id));
+
+	linked_list_t* indexes = construct_linked_list(NULL, sizeof(int));
+	unsigned int i;
+	for (i = 0; i < get_length(transactions->transaction_list); i++)
+	{
+		transaction_t* temp = get_transaction_by_index(transactions, i);
+		if (strcmp(get_sender_id(temp), get_client_id(current)) || strcmp(get_receiver_id(temp), get_client_id(current)))
+			push_back(indexes, &i);
+	}
+
+	for (i = *((unsigned int*)get_by_index(indexes, 0)); i < get_length(indexes); i++)
+		remove_transaction(transactions, *((unsigned int*)get_by_index(indexes, i)));
+
+	destruct_linked_list(indexes);
+
+	save_client_db(clients);
+	save_transaction_db(transactions);
+
+	return -6;
+}
+
+
+int logout(client_t* current)
+{
+	printf("Client %s\n  logged out", current->id);
+
+	return -7;
+}
+
+
+void encrypt_pw(char* pw, char* pw_cipher)
+{
+	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
+	sprintf(pw_cipher, "%08lx", pw_hash);
+}
 
 int check_client_id_format(const char* buffer)
 {
@@ -350,7 +503,7 @@ int read_client_id(char* id)
 	int check = 1;
 
 	printf("Client ID> \n");
-	scanf("%[^\n]", buffer);
+	scanf("%s", buffer);
 
 	if (!check_client_id_format(buffer))
 		check = 0;
@@ -367,7 +520,7 @@ int read_client_pw(char* pw)
 	int check = 1;
 
 	printf("Client Password> \n");
-	scanf("%[^\n]", buffer);
+	scanf("%s", buffer);
 
 	if (!check_client_pw_format(buffer))
 		check = 0;
@@ -404,13 +557,12 @@ int read_client_id_pw(char* id, char* pw)
 }
 
 
-void login(clients_t* clients, char* id, char* pw)
+void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
 	client_t* current_client = NULL;
 	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
 
-	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
-	sprintf(pw_cipher, "%08lx", pw_hash);
+	encrypt_pw(pw, pw_cipher);
 
 	current_client = login_check(clients, id, pw_cipher);
 	if (current_client == NULL)
@@ -418,12 +570,11 @@ void login(clients_t* clients, char* id, char* pw)
 	else
 	{
 		printf("Logged in as client %s\n", current_client->id);
-		transactions_t* transactions = construct_transactions();
 		client_menu(current_client, clients, transactions);
 	}
 }
 
-void login_client(clients_t* clients)
+void login_client(clients_t* clients, transactions_t* transactions)
 {
 	printf("Login\n");
 
@@ -433,24 +584,23 @@ void login_client(clients_t* clients)
 	int read_result = read_client_id_pw(id, pw);
 	switch (read_result)
 	{
-		case '1':
-			login(clients, id, pw);
+		case 1:
+			login(clients, transactions, id, pw);
 			break;
-		case '2':
+		case 2:
 			printf("Incorrect ID format\n");
 			break;
-		case '3':
+		case 3:
 			printf("Incorrect password format\n");
 			break;
-		case '4':
+		case 4:
 			printf("Incorrect ID and password format\n");
 			break;
-		default:;
 	}
 }
 
 
-void regist(clients_t* clients, char* id, char* pw)
+void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
 	client_t* current_client = NULL;
 	char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
@@ -469,12 +619,11 @@ void regist(clients_t* clients, char* id, char* pw)
 		current_client = get_client_by_index(clients, get_length(clients->client_list) - 1);
 		save_client_db(clients);
 		
-		transactions_t* transactions = construct_transactions();
 		client_menu(current_client, clients, transactions);
 	}
 }
 
-void register_client(clients_t* clients)
+void register_client(clients_t* clients, transactions_t* transactions)
 {
 	printf("Register\n");
 	char id[CLIENT_ID_LEN + 1];
@@ -483,21 +632,19 @@ void register_client(clients_t* clients)
 	int read_result = read_client_id_pw(id, pw);
 	switch (read_result)
 	{
-		case '1':
-			regist(clients, id, pw);
+		case 1:
+			regist(clients, transactions, id, pw);
 			break;
-		case '2':
+		case 2:
 			printf("Incorrect ID format\n");
 			break;
-		case '3':
+		case 3:
 			printf("Incorrect password format\n");
 			break;
-		case '4':
+		case 4:
 			printf("Incorrect ID and password format\n");
 			break;
-		default:;
 	}
-
 }
 
 
@@ -547,10 +694,51 @@ void load_client_db(clients_t* clients)
 }
 
 
-void exit_program(void)
+void save_transaction_db(transactions_t* transactions)
 {
-	printf("Program ends\n");
+	FILE* fp;
+	fp = fopen(TRANSACTION_DB, "w+");
+
+	fprintf(fp, "Transaction ID      Sender ID      Receiver ID      Amount      Date(Month-Day Hour:Minute)\n");
+	unsigned int i;
+	for (i = 0; i < get_length(transactions->transaction_list); i++)
+	{
+		transaction_t* current = get_transaction_by_index(transactions, i);
+		fprintf(fp, "%s   %s   %s   %f   %d   %d   %d   %d\n", current->transaction_id, current->sender_id, current->receiver_id, current->amount, current->date_time->month, current->date_time->day, current->date_time->hour, current->date_time->minute);
+	}
+	fclose(fp);
 }
+
+int load_transaction(FILE* fp, transaction_t* temp)
+{
+	int result = fscanf(fp, "%s   %s   %s   %lf   %d   %d   %d   %d\n", temp->transaction_id, temp->sender_id, temp->receiver_id, &(temp->amount), &(temp->date_time->month), &(temp->date_time->day), &(temp->date_time->hour), &(temp->date_time->minute));
+
+	return result;
+}
+
+void load_transaction_db(transactions_t* transactions)
+{
+	FILE* fp;
+	fp = fopen(TRANSACTION_DB, "r");
+	if (fp == NULL)
+	{
+		printf("Read error\n");
+		return;
+	}
+
+	destruct_transactions(transactions);
+	transactions = construct_transactions();
+
+	fscanf(fp, "%*[^\n]");
+
+	transaction_t temp;
+
+	while (load_transaction(fp, &temp) == TRANSACTION_FIELD_COUNT)
+		add_transaction(transactions, temp);
+
+	fclose(fp);
+}
+
 
 void error(void)
 {

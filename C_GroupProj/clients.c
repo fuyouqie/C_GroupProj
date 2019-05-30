@@ -17,13 +17,6 @@ void destruct_clients(clients_t* clients)
 	free(clients);
 }
 
-/*
-static int equals(client_t* data_a, client_t* data_b)
-{
-	return strcmp(data_a->id, data_b->id);
-}
-*/
-
 linked_list_t* get_client_list(clients_t* clients)
 {
 	return clients->client_list;
@@ -59,13 +52,25 @@ client_t* get_client_by_id(clients_t* clients, char* id)
 	return temp;
 }
 
+int get_client_index_by_id(clients_t* clients, char* id)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(clients->client_list); i++)
+	{
+		if (matches_client_id(get_client_by_index(clients, i), id))
+			return i;
+	}
+
+	return -1;
+}
+
 client_t* login_check(clients_t* clients, char* id, char* pw_cipher)
 {
 	unsigned int i;
 	for (i = 0; i < get_length(clients->client_list); i++)
 	{
 		client_t* temp = get_client_by_index(clients, i);
-		if (matches_id_pw(temp, id, pw_cipher))
+		if (matches_client_id_pw(temp, id, pw_cipher))
 			return temp;
 	}
 
@@ -77,7 +82,7 @@ int register_check(clients_t* clients, char* id)
 	unsigned int i;
 	for (i = 0; i < get_length(clients->client_list); i++)
 	{
-		if (matches_id(get_client_by_index(clients, i), id))
+		if (matches_client_id(get_client_by_index(clients, i), id))
 			return 0;
 	}
 

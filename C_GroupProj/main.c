@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "clients.h"
-#include "transactions.h"
-#include "encrypt.h"
 #include "BankingApp.h"
 
+/*
 void test_oop_2(transactions_t* transactions)
 {
 	print_transaction_list(transactions);
@@ -18,7 +16,7 @@ void test_oop_2(transactions_t* transactions)
 
 transactions_t* test_oop(void)
 {
-	/*Test client*/
+	
 	clients_t* clients = construct_clients();
 	client_t client;
 
@@ -50,7 +48,10 @@ transactions_t* test_oop(void)
 
 	destruct_clients(clients);
 
-	/*Test transaction*/
+	
+
+
+
 	transactions_t* transactions = construct_transactions();
 	transaction_t transaction;
 	date_time_t date_time;
@@ -92,10 +93,11 @@ void test_enc()
 	unsigned long hash = encrypt(a, strlen(a), MAX_CLIENT_PW_CIPHER_LEN);
 	printf("After encryption:  %08lx\n", hash);
 }
+*/
 
 int main(void)
 {
-	test_oop_2(test_oop());
+	BankingApp();
 
 	return 0;
 }

@@ -8,6 +8,7 @@
 
 #define TRANSACTION_ID_LEN 6
 #define TRANSACTION_DB "transaction_db.txt"
+#define TRANSACTION_FIELD_COUNT 3
 
 typedef struct transaction
 {
@@ -23,6 +24,7 @@ transaction_t* construct_transaction(void);
 transaction_t* construct_transaction_overload1(char*, char*, char*, double, date_time_t*);
 void destruct_transaction(transaction_t*);
 void set_transaction(transaction_t*, char*, char*, char*, double, date_time_t*);
+int matches_transaction_id(transaction_t*, char*);
 char* get_transaction_id(transaction_t*);
 char* get_sender_id(transaction_t*);
 char* get_receiver_id(transaction_t*);

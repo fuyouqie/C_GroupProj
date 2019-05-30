@@ -1,0 +1,2 @@
+Client ID      PW_Cipher      Balance
+12345678   01f6a8af   25.000000

@@ -40,6 +40,14 @@ void set_transaction(transaction_t* transaction, char* transaction_id, char* sen
 	set_date_time(transaction, date_time);
 }
 
+int matches_transaction_id(transaction_t* transaction, char* id)
+{
+	if (strcmp(transaction->transaction_id, id))
+		return 1;
+
+	return 0;
+}
+
 char* get_transaction_id(transaction_t* transaction)
 {
 	return transaction->transaction_id;
