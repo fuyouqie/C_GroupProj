@@ -4,6 +4,15 @@
 
 #include "BankingApp.h"
 
+/**************************************************************************
+* This function is used to construct the clients info and load client and transaction 
+* information in to the array
+*
+*   inputs:
+* - none
+*   outputs:
+* - none
+**************************************************************************/
 void BankingApp(void)
 {
 	clients_t* clients = construct_clients();
@@ -18,7 +27,14 @@ void BankingApp(void)
 	destruct_transactions(transactions);
 }
 
-
+/**************************************************************************
+* This function is used to print start menu
+*
+*   inputs:
+* - none
+*   outputs:
+* - none
+**************************************************************************/
 void print_start_menu(void)
 {
 	printf("\n"
@@ -28,6 +44,15 @@ void print_start_menu(void)
 	"Enter option(1 - 4)> \n");
 }
 
+/**************************************************************************
+* This function is used to print start menu and read the option and print 
+  error message
+*
+*   inputs:
+* - none
+*   outputs:
+* - int
+**************************************************************************/
 int start_menu_read_option(void)
 {
 	print_start_menu();
@@ -43,6 +68,14 @@ int start_menu_read_option(void)
 	return option;
 }
 
+/**************************************************************************
+* This function is used to print start menu and read the option
+*
+*   inputs:
+* - clients_t* clients, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void start_menu(clients_t* clients, transactions_t* transactions)
 {
 	int option = start_menu_read_option();
@@ -65,7 +98,14 @@ void start_menu(clients_t* clients, transactions_t* transactions)
 	}
 }
 
-
+/**************************************************************************
+* This function is used to print client menu
+*
+*   inputs:
+* - none
+*   outputs:
+* - none
+**************************************************************************/
 void print_client_menu(void)
 {
 	printf("\n"
@@ -80,6 +120,14 @@ void print_client_menu(void)
 		   "Enter option(1 - 8)> \n");
 }
 
+/**************************************************************************
+* This function is used to print client menu and read the option
+*
+*   inputs:
+* - none
+*   outputs:
+* - int
+**************************************************************************/
 int client_menu_read_option(void)
 {
 	print_client_menu();
@@ -95,6 +143,14 @@ int client_menu_read_option(void)
 	return option;
 }
 
+/**************************************************************************
+* This function is used to read the option
+*
+*   inputs:
+* - client_t* current, clients_t* clients, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void client_menu(client_t* current, clients_t* clients, transactions_t* transactions)
 {
 	int option = client_menu_read_option();
@@ -135,7 +191,14 @@ void client_menu(client_t* current, clients_t* clients, transactions_t* transact
 	}
 }
 
-
+/**************************************************************************
+* This function is used to print client's transactions
+*
+*   inputs:
+* - client_t* client, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void print_client_transactions(client_t* client, transactions_t* transactions)
 {
 	node_t* current = (transactions->transaction_list->head);
@@ -149,6 +212,14 @@ void print_client_transactions(client_t* client, transactions_t* transactions)
 	}
 }
 
+/**************************************************************************
+* This function is used to view the account detail
+*
+*   inputs:
+* - client_t* current, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void view_account(client_t* current, transactions_t* transactions)
 {
 	printf("#Account Information\n");
@@ -157,7 +228,14 @@ void view_account(client_t* current, transactions_t* transactions)
 	print_client_transactions(current, transactions);
 }
 
-
+/**************************************************************************
+* This function is used to transfer credit
+*
+*   inputs:
+* - client_t* current, clients_t* clients, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void transfer(client_t* current, clients_t* clients, transactions_t* transactions)
 {
 	printf("Transfer Money\n");
@@ -183,6 +261,14 @@ void transfer(client_t* current, clients_t* clients, transactions_t* transaction
 	}
 }
 
+/**************************************************************************
+* This function is used to transfer credit
+*
+*   inputs:
+* - client_t* current, clients_t* clients, transactions_t* transactions, char* receiver_id
+*   outputs:
+* - int
+**************************************************************************/
 int check_receiver(client_t* current, clients_t* clients, transactions_t* transactions, char* receiver_id)
 {
 	printf("Enter the receiver info\n");
@@ -198,6 +284,14 @@ int check_receiver(client_t* current, clients_t* clients, transactions_t* transa
 	return 1;
 }
 
+/**************************************************************************
+* This function is used to check if amount of transfer credit valid
+*
+*   inputs:
+* - client_t* sender, client_t* receiver, transactions_t* transactions, clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void transfer_amount(client_t* sender, client_t* receiver, transactions_t* transactions, clients_t* clients)
 {
 	double amount = 0.0;
@@ -236,11 +330,27 @@ void transfer_amount(client_t* sender, client_t* receiver, transactions_t* trans
 	}
 }
 
+/**************************************************************************
+* This function is used to geneerate a random number
+*
+*   inputs:
+* - int* buffer, int min, int max
+*   outputs:
+* - none
+**************************************************************************/
 void generate_random_ints(int* buffer, int min, int max)
 {
 	*buffer = (rand() % (max - min + 1)) + min;
 }
 
+/**************************************************************************
+* This function is used to geneerate a transaction id
+*
+*   inputs:
+* - char* transaction_id
+*   outputs:
+* - none
+**************************************************************************/
 void generate_transaction_id(char* transaction_id)
 {
 	double max_d = pow(10, TRANSACTION_ID_LEN) - 1;
@@ -254,6 +364,14 @@ void generate_transaction_id(char* transaction_id)
 	sprintf(transaction_id, "%06d", random);
 }
 
+/**************************************************************************
+* This function is used to generate a the random time and date
+*
+*   inputs:
+* - date_time_t* date_time
+*   outputs:
+* - none
+**************************************************************************/
 void generate_date_time(date_time_t* date_time)
 {
 	generate_random_ints(&(date_time->month), MONTH_START, MONTH_END);
@@ -262,6 +380,14 @@ void generate_date_time(date_time_t* date_time)
 	generate_random_ints(&(date_time->minute), MINUTE_START, MINUTE_END);
 }
 
+/**************************************************************************
+* This function is used to generate a the random time and date
+*
+*   inputs:
+* - date_time_t* date_time
+*   outputs:
+* - none
+**************************************************************************/
 int read_amount(double* amount)
 {
 	printf("Enter amount to transfer\n");
@@ -275,6 +401,14 @@ int read_amount(double* amount)
 	return 1;
 }
 
+/**************************************************************************
+* This function is used to check the amount
+*
+*   inputs:
+* - client_t* sender, double amount
+*   outputs:
+* - int
+**************************************************************************/
 int check_amount(client_t* sender, double amount)
 {
 	if (amount <= 0)
@@ -286,7 +420,14 @@ int check_amount(client_t* sender, double amount)
 	return 1;
 }
 
-
+/**************************************************************************
+* This function is make a deposit and update the balance of the account 
+*
+*   inputs:
+* - client_t* current, clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void deposit(client_t* current, clients_t* clients)
 {
 	printf("Deposit Money\n");
@@ -308,7 +449,14 @@ void deposit(client_t* current, clients_t* clients)
 	}
 }
 
-
+/**************************************************************************
+* This function is to withdraw cash and update the balance of the account
+*
+*   inputs:
+* - client_t* current, clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void withdraw(client_t* current, clients_t* clients)
 {
 	printf("Withdraw Money\n");
@@ -335,6 +483,14 @@ void withdraw(client_t* current, clients_t* clients)
 }
 
 
+/**************************************************************************
+* This function is to change the password
+*
+*   inputs:
+* - client_t* current, clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void change_pw(client_t* current, clients_t* clients)
 {
 	printf("Change password\n");
@@ -357,7 +513,14 @@ void change_pw(client_t* current, clients_t* clients)
 		}
 	}
 }
-
+/**************************************************************************
+* This function is to change to the new password
+*
+*   inputs:
+* - client_t* current
+*   outputs:
+* - none
+**************************************************************************/
 void change_to_new_pw(client_t* current)
 {
 	printf("Password change allowed, enter new password\n");
@@ -375,6 +538,14 @@ void change_to_new_pw(client_t* current)
 }
 
 
+/**************************************************************************
+* This function is to cancel the current account
+*
+*   inputs:
+* - client_t* current, clients_t* clients, transactions_t* transactions
+*   outputs:
+* - int
+**************************************************************************/
 int cancel_client(client_t* current, clients_t* clients, transactions_t* transactions)
 {
 	printf("Cancel client\n");
@@ -407,7 +578,14 @@ int cancel_client(client_t* current, clients_t* clients, transactions_t* transac
 	return -6;
 }
 
-
+/**************************************************************************
+* This function is to logout
+*
+*   inputs:
+* - client_t* current
+*   outputs:
+* - int
+**************************************************************************/
 int logout(client_t* current)
 {
 	printf("Client %s\n  logged out", current->id);
@@ -415,13 +593,28 @@ int logout(client_t* current)
 	return -7;
 }
 
-
+/**************************************************************************
+* This function is to encrypt the origonal password
+*
+*   inputs:
+* - char* pw, char* pw_cipher
+*   outputs:
+* - void
+**************************************************************************/
 void encrypt_pw(char* pw, char* pw_cipher)
 {
 	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
 	sprintf(pw_cipher, "%08lx", pw_hash);
 }
 
+/**************************************************************************
+* This function is to check the id format
+*
+*   inputs:
+* - const char* buffer
+*   outputs:
+* - int
+**************************************************************************/
 int check_client_id_format(const char* buffer)
 {
 	unsigned int length = strlen(buffer);
@@ -438,6 +631,14 @@ int check_client_id_format(const char* buffer)
 	return 1;
 }
 
+/**************************************************************************
+* This function is to check if the password format is correct
+*
+*   inputs:
+* - const char* buffer
+*   outputs:
+* - int
+**************************************************************************/
 int check_client_pw_format(const char* buffer)
 {
 	unsigned int length = strlen(buffer);
@@ -500,6 +701,14 @@ int check_client_pw_format(const char* buffer)
 	return 1;
 }
 
+/**************************************************************************
+* This function is to read the inputed client id
+*
+*   inputs:
+* - char* id
+*   outputs:
+* - int
+**************************************************************************/
 int read_client_id(char* id)
 {
 	char buffer[GENERAL_BUFFER_SIZE];
@@ -516,7 +725,14 @@ int read_client_id(char* id)
 
 	return check;
 }
-
+/**************************************************************************
+* This function is to read the inputed password 
+*
+*   inputs:
+* - char* pw
+*   outputs:
+* - int
+**************************************************************************/
 int read_client_pw(char* pw)
 {
 	char buffer[GENERAL_BUFFER_SIZE];
@@ -534,6 +750,14 @@ int read_client_pw(char* pw)
 	return check;
 }
 
+/**************************************************************************
+* This function is to check if the pasword is matching the ID
+*
+*   inputs:
+* - char* pw
+*   outputs:
+* - int
+**************************************************************************/
 int read_client_id_pw(char* id, char* pw)
 {
 	int result = 0;
@@ -559,7 +783,14 @@ int read_client_id_pw(char* id, char* pw)
 	return result;
 }
 
-
+/**************************************************************************
+* This function is to login to the account
+*
+*   inputs:
+* - clients_t* clients, transactions_t* transactions, char* id, char* pw
+*   outputs:
+* - none
+**************************************************************************/
 void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
 	client_t* current_client = NULL;
@@ -577,6 +808,14 @@ void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 	}
 }
 
+/**************************************************************************
+* This function is to login to the account
+*
+*   inputs:
+* - clients_t* clients, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void login_client(clients_t* clients, transactions_t* transactions)
 {
 	printf("Login\n");
@@ -602,7 +841,14 @@ void login_client(clients_t* clients, transactions_t* transactions)
 	}
 }
 
-
+/**************************************************************************
+* This function is to register an account account
+*
+*   inputs:
+* - clients_t* clients, transactions_t* transactions, char* id, char* pw
+*   outputs:
+* - none
+**************************************************************************/
 void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
 	client_t* current_client = NULL;
@@ -626,6 +872,14 @@ void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw
 	}
 }
 
+/**************************************************************************
+* This function is to register an account account
+*
+*   inputs:
+* - clients_t* clients, transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void register_client(clients_t* clients, transactions_t* transactions)
 {
 	printf("Register\n");
@@ -650,7 +904,14 @@ void register_client(clients_t* clients, transactions_t* transactions)
 	}
 }
 
-
+/**************************************************************************
+* This function is to save info to database
+*
+*   inputs:
+* - clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void save_client_db(clients_t* clients)
 {
 	FILE* fp;
@@ -666,13 +927,28 @@ void save_client_db(clients_t* clients)
 	fclose(fp);
 }
 
+/**************************************************************************
+* This function is to save info to database
+*
+*   inputs:
+* - FILE* fp, client_t* temp
+*   outputs:
+* - int
+**************************************************************************/
 int load_client(FILE* fp, client_t* temp)
 {
 	int result = fscanf(fp, "%s   %s   %lf\n", temp->id, temp->pw_cipher, &(temp->balance));
 
 	return result;
 }
-
+/**************************************************************************
+* This function is to load client database to the array
+*
+*   inputs:
+* - clients_t* clients
+*   outputs:
+* - none
+**************************************************************************/
 void load_client_db(clients_t* clients)
 {
 	FILE* fp;
@@ -696,7 +972,14 @@ void load_client_db(clients_t* clients)
 	fclose(fp);
 }
 
-
+/**************************************************************************
+* This function is to save transaction to database
+*
+*   inputs:
+* - transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void save_transaction_db(transactions_t* transactions)
 {
 	FILE* fp;
@@ -712,6 +995,14 @@ void save_transaction_db(transactions_t* transactions)
 	fclose(fp);
 }
 
+/**************************************************************************
+* This function is to save load transaction from database
+*
+*   inputs:
+* - FILE* fp, transaction_t* temp
+*   outputs:
+* - none
+**************************************************************************/
 int load_transaction(FILE* fp, transaction_t* temp)
 {
 	int result = fscanf(fp, "%s   %s   %s   %lf   %d   %d   %d   %d\n", temp->transaction_id, temp->sender_id, temp->receiver_id, &(temp->amount), &(temp->date_time->month), &(temp->date_time->day), &(temp->date_time->hour), &(temp->date_time->minute));
@@ -719,6 +1010,14 @@ int load_transaction(FILE* fp, transaction_t* temp)
 	return result;
 }
 
+/**************************************************************************
+* This function is to save load transaction from database
+*
+*   inputs:
+* - transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void load_transaction_db(transactions_t* transactions)
 {
 	FILE* fp;
@@ -742,7 +1041,14 @@ void load_transaction_db(transactions_t* transactions)
 	fclose(fp);
 }
 
-
+/**************************************************************************
+* This function is to print error message
+*
+*   inputs:
+* - none
+*   outputs:
+* - none
+**************************************************************************/
 void error(void)
 {
 	printf("Option not found\n");

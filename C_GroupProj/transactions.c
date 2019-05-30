@@ -2,7 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "transactions.h"
-
+/**************************************************************************
+* This function is to dynamically allocate momory to the transaction struct
+*
+*   inputs:
+* - none
+*   outputs:
+* - transactions_t*
+**************************************************************************/
 transactions_t* construct_transactions(void)
 {
 	transactions_t* transactions = malloc(sizeof(transactions_t));
@@ -11,32 +18,80 @@ transactions_t* construct_transactions(void)
 	return transactions;
 }
 
+/**************************************************************************
+* This function is to set free the allocated momory to the transaction struct
+*
+*   inputs:
+* - transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void destruct_transactions(transactions_t* transactions)
 {
 	destruct_linked_list(transactions->transaction_list);
 	free(transactions);
 }
 
+/**************************************************************************
+* This function is to get the transaction list
+*
+*   inputs:
+* - transactions_t* transactions
+*   outputs:
+* - linked_list_t*
+**************************************************************************/
 linked_list_t* get_transaction_list(transactions_t* transactions)
 {
 	return transactions->transaction_list;
 }
 
+/**************************************************************************
+* This function is to add a transaction
+*
+*   inputs:
+* - transactions_t* transactions, transaction_t transaction
+*   outputs:
+* - none
+**************************************************************************/
 void add_transaction(transactions_t* transactions, transaction_t transaction)
 {
 	push_back(transactions->transaction_list, &transaction);
 }
 
+/**************************************************************************
+* This function is to remove a transaction
+*
+*   inputs:
+* - transactions_t* transactions, unsigned int index
+*   outputs:
+* - int
+**************************************************************************/
 int remove_transaction(transactions_t* transactions, unsigned int index)
 {
 	return delete_by_index(transactions->transaction_list, index);
 }
 
+/**************************************************************************
+* This function is to get the transaction by index
+*
+*   inputs:
+* - transactions_t* transactions, unsigned int index
+*   outputs:
+* - transaction_t*
+**************************************************************************/
 transaction_t* get_transaction_by_index(transactions_t* transactions, unsigned int index)
 {
 	return get_by_index(transactions->transaction_list, index);
 }
 
+/**************************************************************************
+* This function is to get the transaction by ID
+*
+*   inputs:
+* - transactions_t* transactions, char* transaction_id
+*   outputs:
+* - transaction_t*
+**************************************************************************/
 transaction_t* get_transaction_by_id(transactions_t* transactions, char* transaction_id)
 {
 	transaction_t* temp = NULL;
@@ -52,6 +107,14 @@ transaction_t* get_transaction_by_id(transactions_t* transactions, char* transac
 	return temp;
 }
 
+/**************************************************************************
+* This function is to get the transaction index by ID
+*
+*   inputs:
+* - transactions_t* transactions, char* transaction_id
+*   outputs:
+* - int
+**************************************************************************/
 int get_transaction_index_by_id(transactions_t* transactions, char* transaction_id)
 {
 	unsigned int i;
@@ -64,6 +127,14 @@ int get_transaction_index_by_id(transactions_t* transactions, char* transaction_
 	return -1;
 }
 
+/**************************************************************************
+* This function is to print the transaction list
+*
+*   inputs:
+* - transactions_t* transactions
+*   outputs:
+* - none
+**************************************************************************/
 void print_transaction_list(transactions_t* transactions)
 {
 	node_t* current = (transactions->transaction_list->head);
