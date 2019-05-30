@@ -393,8 +393,11 @@ int cancel_client(client_t* current, clients_t* clients, transactions_t* transac
 			push_back(indexes, &i);
 	}
 
-	for (i = *((unsigned int*)get_by_index(indexes, 0)); i < get_length(indexes); i++)
-		remove_transaction(transactions, *((unsigned int*)get_by_index(indexes, i)));
+	if (get_length(indexes) > 0)
+	{
+		for (i = *((unsigned int*)get_by_index(indexes, 0)); i < get_length(indexes); i++)
+			remove_transaction(transactions, *((unsigned int*)get_by_index(indexes, i)));
+	}
 
 	destruct_linked_list(indexes);
 
