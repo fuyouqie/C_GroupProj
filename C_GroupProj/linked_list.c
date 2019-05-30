@@ -47,8 +47,7 @@ void set_next(node_t* node, node_t* next)
 
 linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn, unsigned int element_size)
 {
-	linked_list_t* list;
-	list = malloc(sizeof(linked_list_t));
+	linked_list_t* list = malloc(sizeof(linked_list_t));
 	list->head = NULL;
 	list->length = 0;
 	list->destruct_data_fn = destruct_data_fn;

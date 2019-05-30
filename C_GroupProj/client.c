@@ -28,7 +28,7 @@ void destruct_client(client_t* client)
 
 int matches_client_id_pw(client_t* client, char* id, char* pw_cipher)
 {
-	if (!strcmp(client->id, id) && !strcmp(client->pw_cipher, pw_cipher))
+	if (strcmp(client->id, id) == 0 && strcmp(client->pw_cipher, pw_cipher) == 0)
 		return 1;
 
 	return 0;
@@ -36,7 +36,7 @@ int matches_client_id_pw(client_t* client, char* id, char* pw_cipher)
 
 int matches_client_id(client_t* client, char* id)
 {
-	if (!strcmp(client->id, id))
+	if (strcmp(client->id, id) == 0)
 		return 1;
 	
 	return 0;

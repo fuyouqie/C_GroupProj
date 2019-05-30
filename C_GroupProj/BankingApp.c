@@ -143,7 +143,7 @@ void print_client_transactions(client_t* client, transactions_t* transactions)
 	{
 		transaction_t* transaction = (transaction_t*)get_data(current);
 
-		if(!strcmp(transaction->sender_id, client->id) || !strcmp(transaction->receiver_id, client->id))
+		if(strcmp(transaction->sender_id, client->id) == 0 || strcmp(transaction->receiver_id, client->id) == 0)
 			print_transaction(transaction);
 		current = get_next(current);
 	}
@@ -189,7 +189,7 @@ int check_receiver(client_t* current, clients_t* clients, transactions_t* transa
 	if (!read_client_id(receiver_id))
 		return 2;
 	
-	if (!strcmp(receiver_id, current->id))
+	if (strcmp(receiver_id, current->id) == 0)
 		return 3;
 
 	if (get_client_by_id(clients, receiver_id) == NULL)
@@ -348,7 +348,7 @@ void change_pw(client_t* current, clients_t* clients)
 	{
 		char pw_cipher[MAX_CLIENT_PW_CIPHER_LEN + 1];
 		encrypt_pw(current_pw, pw_cipher);
-		if (strcmp(get_pw_cipher(current), pw_cipher))
+		if (strcmp(get_pw_cipher(current), pw_cipher) != 0)
 			printf("Incorrect password\n");
 		else
 		{
@@ -389,7 +389,7 @@ int cancel_client(client_t* current, clients_t* clients, transactions_t* transac
 	for (i = 0; i < get_length(transactions->transaction_list); i++)
 	{
 		transaction_t* temp = get_transaction_by_index(transactions, i);
-		if (!strcmp(get_sender_id(temp), get_client_id(current)) || !strcmp(get_receiver_id(temp), get_client_id(current)))
+		if (strcmp(get_sender_id(temp), get_client_id(current)) == 0 || strcmp(get_receiver_id(temp), get_client_id(current)) == 0)
 			push_back(indexes, &i);
 	}
 
