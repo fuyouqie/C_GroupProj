@@ -44,17 +44,17 @@ int matches_id(client_t* client, char* id)
 
 void set_client(client_t* client, char* id, char* pw_cipher, double balance)
 {
-	set_id(client, id);
+	set_client_id(client, id);
 	set_pw_cipher(client, pw_cipher);
 	set_balance(client, balance);
 }
 
-char* get_id(client_t* client)
+char* get_client_id(client_t* client)
 {
 	return client->id;
 }
 
-void set_id(client_t* client, char* id)
+void set_client_id(client_t* client, char* id)
 {
 	memset(client->id, 0, CLIENT_ID_LEN + 1);
 	strcpy(client->id, id);

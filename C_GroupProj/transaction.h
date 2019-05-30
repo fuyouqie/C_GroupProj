@@ -4,16 +4,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "date_time.h"
+#include "client.h"
 
-#define MAX_CLIENT_ID_LEN 8
-#define MAX_TRANS_ID_LEN 6
+#define TRANSACTION_ID_LEN 6
 #define TRANSACTION_DB "transaction_db.txt"
 
 typedef struct transaction
 {
-	char transaction_id[MAX_TRANS_ID_LEN + 1];
-	char sender_id[MAX_CLIENT_ID_LEN + 1];
-	char receiver_id[MAX_CLIENT_ID_LEN + 1];
+	char transaction_id[TRANSACTION_ID_LEN + 1];
+	char sender_id[CLIENT_ID_LEN + 1];
+	char receiver_id[CLIENT_ID_LEN + 1];
 	double amount;
 	date_time_t* date_time;
 }
