@@ -61,7 +61,7 @@ char asctochar(int a)
 *   outputs:
 * - unsigned long
 **************************************************************************/
-unsigned long encrypt(const char* input, const unsigned int input_len, const unsigned int HASH_SIZE)
+long long encrypt(const char* input, const unsigned int input_len, const unsigned int HASH_SIZE)
 {
 	char inputBuff[50];
 	char cipherBuff[50];
@@ -84,7 +84,7 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 
 	char* hash = cipherBuff;
 
-	unsigned long hash_value;
+	long long hash_value;
 	for (hash_value = 0; *hash != '\0'; ++hash)
 		hash_value = *hash + 31 * hash_value;
 
@@ -94,8 +94,8 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 	*/
 	double size = pow(16, HASH_SIZE);
 	char size_str[30];
-	sprintf(size_str, "%f", size);
+	sprintf(size_str, "%0.0f", size);
 
 	/*Returns value mod the max size*/
-	return hash_value % atol(size_str);
+	return (atoll(size_str) <= 0) ? 0 : hash_value % atoll(size_str);
 }

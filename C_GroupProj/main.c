@@ -3,11 +3,19 @@
 #include <math.h>
 #include "BankingApp.h"
 
-int main(void)
-{
-	BankingApp();
 
-	return 0;
+void test_pow()
+{
+	double size = pow(16, 8);
+	printf("%f\n", size);
+	char size_str[30];
+	sprintf(size_str, "%0.0f", size);
+	printf("%s\n", size_str);
+	long long val1 = atoll(size_str);
+	printf("%lld\n", val1);
+
+	int val2 = atoi(size_str);
+	printf("%d\n", val2);
 }
 
 /*
@@ -96,6 +104,13 @@ void test_enc()
 	char a[20];
 	printf("Enter Password\n");
 	scanf("%s", a);
-	unsigned long hash = encrypt(a, strlen(a), MAX_CLIENT_PW_CIPHER_LEN);
-	printf("After encryption:  %08lx\n", hash);
+	long long hash = encrypt(a, strlen(a), MAX_CLIENT_PW_CIPHER_LEN);
+	printf("After encryption:  %08llx\n", hash);
+}
+
+int main(void)
+{
+	BankingApp();
+
+	return 0;
 }

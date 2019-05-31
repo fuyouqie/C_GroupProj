@@ -43,11 +43,18 @@ void BankingApp(void)
 **************************************************************************/
 void print_start_menu(void)
 {
+	printf("  ________ .________ \n"
+	" /  _____/ |   ____/ \n"
+	"/   \\   __ |____  \\  \n"
+	"\\    \\_\\  \\/       \\ \n"
+	" \\______  /______  / \n"
+	"        \\/       \\/  \n");
+	printf("----Welcome to G5----");
 	printf("\n"
 	"1.    Login\n"
 	"2.    Register\n"
 	"3.    Exit Program\n\n"
-	"Enter option(1 - 4)> \n");
+	"Enter option(1 - 3)> \n");
 }
 
 /**************************************************************************
@@ -113,10 +120,12 @@ void start_menu(clients_t* clients, transactions_t* transactions)
 *   outputs:
 * - void
 **************************************************************************/
+
+
 void encrypt_pw(char* pw, char* pw_cipher)
 {
-	unsigned long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
-	sprintf(pw_cipher, "%08lx", pw_hash);
+	long long pw_hash = encrypt(pw, strlen(pw), MAX_CLIENT_PW_CIPHER_LEN);
+	sprintf(pw_cipher, "%08llx", pw_hash);
 }
 
 
@@ -337,7 +346,7 @@ void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 **************************************************************************/
 void login_client(clients_t* clients, transactions_t* transactions)
 {
-	printf("Login\n");
+	printf("--------Login--------\n");
 
 	char id[CLIENT_ID_LEN + 1];
 	char pw[MAX_CLIENT_PW_LEN + 1];
@@ -403,7 +412,7 @@ void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw
 **************************************************************************/
 void register_client(clients_t* clients, transactions_t* transactions)
 {
-	printf("Register\n");
+	printf("--------Register--------\n");
 	char id[CLIENT_ID_LEN + 1];
 	char pw[MAX_CLIENT_PW_LEN + 1];
 
@@ -574,7 +583,7 @@ void view_account(client_t* current, transactions_t* transactions)
 **************************************************************************/
 void transfer(client_t* current, clients_t* clients, transactions_t* transactions)
 {
-	printf("Transfer Money\n");
+	printf("--------Transfer Money--------\n");
 
 	char receiver_id[CLIENT_ID_LEN + 1];
 	int receiver_check = check_receiver(current, clients, transactions, receiver_id);
@@ -650,7 +659,7 @@ void transfer_amount(client_t* sender, client_t* receiver, transactions_t* trans
 		if(amount_result == 2)
 			printf("Amount must be greater than 0\n");
 		else if (amount_result == 3)
-			printf("Not enough balance\n");
+			printf("Insufficient funds\n");
 		else
 		{
 			/*Begins transfer*/
@@ -756,7 +765,7 @@ void generate_date_time(date_time_t* date_time)
 **************************************************************************/
 int read_amount(double* amount)
 {
-	printf("Enter amount to transfer\n");
+	printf("Enter amount\n");
 
 	if (scanf("%lf", amount) != 1)
 	{
@@ -799,7 +808,7 @@ int check_amount(client_t* sender, double amount)
 **************************************************************************/
 void deposit(client_t* current, clients_t* clients)
 {
-	printf("Deposit Money\n");
+	printf("--------Deposit Money--------\n");
 
 	double amount = 0.0;
 	int read_result = read_amount(&amount);
@@ -829,7 +838,7 @@ void deposit(client_t* current, clients_t* clients)
 **************************************************************************/
 void withdraw(client_t* current, clients_t* clients)
 {
-	printf("Withdraw Money\n");
+	printf("--------Withdraw Money--------\n");
 
 	double amount = 0.0;
 	int read_result = read_amount(&amount);
@@ -843,7 +852,7 @@ void withdraw(client_t* current, clients_t* clients)
 		if (amount_result == 2)
 			printf("Amount must be greater than 0\n");
 		else if (amount_result == 3)
-			printf("Not enough balance\n");
+			printf("Insufficient funds\n");
 		else
 		{
 			decrease_balance(current, amount);
@@ -863,7 +872,7 @@ void withdraw(client_t* current, clients_t* clients)
 **************************************************************************/
 void change_pw(client_t* current, clients_t* clients)
 {
-	printf("Change password\n");
+	printf("--------Change password--------\n");
 	
 	char current_pw[MAX_CLIENT_PW_LEN + 1];
 
@@ -983,7 +992,7 @@ void cancel_client_(client_t* current, clients_t* clients, transactions_t* trans
 **************************************************************************/
 int cancel_client(client_t* current, clients_t* clients, transactions_t* transactions)
 {
-	printf("Cancel client\n");
+	printf("--------Cancel client--------\n");
 	int cancel_result = 0;
 
 	/*Reads the password*/
@@ -1026,7 +1035,7 @@ int cancel_client(client_t* current, clients_t* clients, transactions_t* transac
 **************************************************************************/
 int logout(client_t* current)
 {
-	printf("Client %s\n  logged out", current->id);
+	printf("Client %s\n  logged out\n", current->id);
 
 	/*
 		Returns -7 representing successful logout
@@ -1054,7 +1063,7 @@ void save_client_db(clients_t* clients)
 	for (i = 0; i < get_length(clients->client_list); i++)
 	{
 		client_t* current = get_client_by_index(clients, i);
-		fprintf(fp, "%s   %s   %f\n", current->id, current->pw_cipher, current->balance);
+		fprintf(fp, "%s   %s   %lf\n", current->id, current->pw_cipher, current->balance);
 	}
 	fclose(fp);
 }
@@ -1129,7 +1138,7 @@ void save_transaction_db(transactions_t* transactions)
 	for (i = 0; i < get_length(transactions->transaction_list); i++)
 	{
 		transaction_t* current = get_transaction_by_index(transactions, i);
-		fprintf(fp, "%s      %s      %s      %lf      %d-%d      %d:%d\n",
+		fprintf(fp, "%s      %s      %s      %f      %d-%d      %d:%d\n",
 				current->transaction_id, current->sender_id,
 				current->receiver_id,
 				current->amount,

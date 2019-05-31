@@ -1,0 +1,2 @@
+Transaction ID      Sender ID      Receiver ID      Amount      Date(Month-Day Hour:Minute)
+030956            15161516      10.00      6-10      19:45
