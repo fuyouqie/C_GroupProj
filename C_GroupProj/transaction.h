@@ -6,10 +6,27 @@
 #include "date_time.h"
 #include "client.h"
 
+/*
+	Format for transaction id:
+		MUST be 6-digit number
+		It's generated randomly
+
+	Format for sender/receiver id:
+		Same foramt as client id which is essentially
+		what it is
+*/
 #define TRANSACTION_ID_LEN 6
 #define TRANSACTION_DB "transaction_db.txt"
-#define TRANSACTION_FIELD_COUNT 3
+#define TRANSACTION_FIELD_COUNT 8
 
+/*
+	struct transaction contains
+		transaction id
+		sender client id
+		receiver client id
+		amount transferred
+		date_time
+*/
 typedef struct transaction
 {
 	char transaction_id[TRANSACTION_ID_LEN + 1];

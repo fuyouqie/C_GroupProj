@@ -3,6 +3,10 @@
 #include "client.h"
 #include "linked_list.h"
 
+/*
+	A group struct for client
+	Contains a linked list of client
+*/
 typedef struct clients
 {
 	linked_list_t* client_list;

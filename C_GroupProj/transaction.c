@@ -5,8 +5,8 @@
 #include <string.h>
 
 /**************************************************************************
-* This function is used to allocate memory of the struct dynamically, and 
-* initial the value of struct transaction
+*   Default constructor
+*   Allocates memory and initialise fields with proper value
 *
 *
 *   inputs:
@@ -24,8 +24,8 @@ transaction_t* construct_transaction()
 }
 
 /**************************************************************************
-* This function is used to set the value of each member of transaction
-* in struct transaction
+*   Alternate constructor
+*   Allocates memory and initialises fields with value passed in
 *
 *
 *   inputs:
@@ -37,18 +37,15 @@ transaction_t* construct_transaction()
 transaction_t* construct_transaction_overload1(char* transaction_id, char* sender_id, char* receiver_id, double amount, date_time_t* date_time)
 {
 	transaction_t* transaction = malloc(sizeof(transaction_t));
-	strcpy(transaction->transaction_id, transaction_id);
-	strcpy(transaction->sender_id, sender_id);
-	strcpy(transaction->receiver_id, receiver_id);
-	transaction->amount = amount;
-	transaction->date_time = construct_date_time_overload1(date_time->month, date_time->day, date_time->hour, date_time->minute);
+
+	set_transaction(transaction, transaction_id, sender_id, receiver_id, amount, date_time);
 
 	return transaction;
 }
 
 /**************************************************************************
-* This function is used to set free the memory that has been allocated to 
-* struct transaction
+*   destructor
+*   first call date_time destructor. then free up the transaction normally
 *
 *
 *   inputs:
@@ -82,9 +79,9 @@ void set_transaction(transaction_t* transaction, char* transaction_id, char* sen
 }
 
 /**************************************************************************
-* This function is used to see if the transaction ID of that particular
-* accout is the same as stored in the database
-*
+* This function is used to see if the transaction ID passed in is the same
+* as the transaction id of the transaction passed in
+* 
 *   inputs:
 * - transaction_t* transaction, char* id
 *   outputs:
@@ -173,6 +170,7 @@ date_time_t* get_date_time(transaction_t* transaction)
 **************************************************************************/
 void set_transaction_id(transaction_t* transaction, char* transaction_id)
 {
+	memset(transaction->transaction_id, 0, TRANSACTION_ID_LEN + 1);
 	strcpy(transaction->transaction_id, transaction_id);
 }
 
@@ -186,6 +184,7 @@ void set_transaction_id(transaction_t* transaction, char* transaction_id)
 **************************************************************************/
 void set_sender_id(transaction_t* transaction, char* sender_id)
 {
+	memset(transaction->sender_id, 0, CLIENT_ID_LEN + 1);
 	strcpy(transaction->sender_id, sender_id);
 }
 
@@ -199,6 +198,7 @@ void set_sender_id(transaction_t* transaction, char* sender_id)
 **************************************************************************/
 void set_receiver_id(transaction_t* transaction, char* receiver_id)
 {
+	memset(transaction->sender_id, 0, CLIENT_ID_LEN + 1);
 	strcpy(transaction->receiver_id, receiver_id);
 }
 

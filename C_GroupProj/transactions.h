@@ -3,6 +3,10 @@
 #include "transaction.h"
 #include "linked_list.h"
 
+/*
+	A group struct for transaction
+	Contains a linked list of transaction
+*/
 typedef struct transactions
 {
 	linked_list_t* transaction_list;
@@ -11,6 +15,7 @@ transactions_t;
 
 transactions_t* construct_transactions(void);
 void destruct_transactions(transactions_t*);
+int check_transaction_id_exists(transactions_t*, char*);
 linked_list_t* get_transaction_list(transactions_t*);
 void add_transaction(transactions_t*, transaction_t);
 int remove_transaction(transactions_t*, unsigned int);

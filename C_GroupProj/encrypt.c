@@ -58,10 +58,14 @@ unsigned long encrypt(const char* input, const unsigned int input_len, const uns
 	for (hash_value = 0; *hash != '\0'; ++hash)
 		hash_value = *hash + 31 * hash_value;
 
+	/*
+		Computes the size of hash required
+		Perform typecast
+	*/
 	double size = pow(16, HASH_SIZE);
 	char size_str[30];
 	sprintf(size_str, "%f", size);
 
-	
+	/*Returns value mod the max size*/
 	return hash_value % atol(size_str);
 }
