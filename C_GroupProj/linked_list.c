@@ -32,7 +32,6 @@ node_t* construct_node(void)
 *  outputs:                                                               *
 * - node_t*                                                               *
 **************************************************************************/
-
 node_t* construct_node_overload1(node_t* next, void* data)
 {
 	node_t* node;
@@ -52,7 +51,7 @@ node_t* construct_node_overload1(node_t* next, void* data)
 * - node_t* node                                                          *
 *                                                                         *
 *  outputs:                                                               *
-* - none                                                                  *
+* - void                                                                  *
 **************************************************************************/
 void destruct_node(node_t* node)
 {

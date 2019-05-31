@@ -8,7 +8,7 @@
 
 #define TRANSACTION_ID_LEN 6
 #define TRANSACTION_DB "transaction_db.txt"
-#define TRANSACTION_FIELD_COUNT 3
+#define TRANSACTION_FIELD_COUNT 8
 
 typedef struct transaction
 {
