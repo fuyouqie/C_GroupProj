@@ -198,7 +198,7 @@ void set_sender_id(transaction_t* transaction, char* sender_id)
 **************************************************************************/
 void set_receiver_id(transaction_t* transaction, char* receiver_id)
 {
-	memset(transaction->sender_id, 0, CLIENT_ID_LEN + 1);
+	memset(transaction->receiver_id, 0, CLIENT_ID_LEN + 1);
 	strcpy(transaction->receiver_id, receiver_id);
 }
 

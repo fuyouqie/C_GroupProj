@@ -1063,7 +1063,7 @@ void save_client_db(clients_t* clients)
 	for (i = 0; i < get_length(clients->client_list); i++)
 	{
 		client_t* current = get_client_by_index(clients, i);
-		fprintf(fp, "%s   %s   %lf\n", current->id, current->pw_cipher, current->balance);
+		fprintf(fp, "%s   %s   %0.2f\n", current->id, current->pw_cipher, current->balance);
 	}
 	fclose(fp);
 }
@@ -1138,8 +1138,9 @@ void save_transaction_db(transactions_t* transactions)
 	for (i = 0; i < get_length(transactions->transaction_list); i++)
 	{
 		transaction_t* current = get_transaction_by_index(transactions, i);
-		fprintf(fp, "%s      %s      %s      %f      %d-%d      %d:%d\n",
-				current->transaction_id, current->sender_id,
+		fprintf(fp, "%s      %s      %s      %0.2f      %d-%d      %d:%d\n",
+				current->transaction_id,
+				current->sender_id,
 				current->receiver_id,
 				current->amount,
 				current->date_time->month,
