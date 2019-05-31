@@ -97,5 +97,5 @@ long long encrypt(const char* input, const unsigned int input_len, const unsigne
 	sprintf(size_str, "%0.0f", size);
 
 	/*Returns value mod the max size*/
-	return (atoll(size_str) <= 0) ? 0 : hash_value % atoll(size_str);
+	return (atol(size_str) <= 0) ? 0 : hash_value % atol(size_str);
 }

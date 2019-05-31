@@ -1,2 +1,0 @@
-Transaction ID      Sender ID      Receiver ID      Amount      Date(Month-Day Hour:Minute)
-031840      12121212      15161516      1.000000      11-11      13:42

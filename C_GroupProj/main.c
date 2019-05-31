@@ -11,7 +11,7 @@ void test_pow()
 	char size_str[30];
 	sprintf(size_str, "%0.0f", size);
 	printf("%s\n", size_str);
-	long long val1 = atoll(size_str);
+	long long val1 = atol(size_str);
 	printf("%lld\n", val1);
 
 	int val2 = atoi(size_str);
