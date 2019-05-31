@@ -4,8 +4,9 @@
 #include "clients.h"
 
 /**************************************************************************
-* This function is to allocaet memory to clients _struct
-*
+* Default constructor
+* Allocates memory for a clients instance
+*  construct the internal linked list
 *   inputs:
 * - none
 *   outputs:
@@ -20,8 +21,8 @@ clients_t* construct_clients()
 }
 
 /**************************************************************************
-* This function is to set free memory allocate to clients _struct
-*
+*  Default destructor
+*  desctruct linked list and frees up itself
 *   inputs:
 * - clients_t* clients
 *   outputs:
@@ -47,7 +48,7 @@ linked_list_t* get_client_list(clients_t* clients)
 }
 
 /**************************************************************************
-* 
+*   Add a new client instance into the group
 *
 *   inputs:
 * - clients_t* clients
@@ -60,7 +61,7 @@ void add_client(clients_t* clients, client_t client)
 }
 
 /**************************************************************************
-* This function is toremove the client from the linklist
+* Removes the client at given index from the group
 *
 *   inputs:
 * - clients_t* clients, unsigned int index
@@ -73,7 +74,7 @@ int remove_client(clients_t* clients, unsigned int index)
 }
 
 /**************************************************************************
-* This function is to get the client list
+*  Gets the client pointer at given index in the list
 *
 *   inputs:
 * - clients_t* clients, unsigned int index
@@ -86,7 +87,7 @@ client_t* get_client_by_index(clients_t* clients, unsigned int index)
 }
 
 /**************************************************************************
-* This function is to get the client by search id
+* This function is to get the client with given id
 *
 *   inputs:
 * - clients_t* clients, char* id
@@ -109,7 +110,7 @@ client_t* get_client_by_id(clients_t* clients, char* id)
 }
 
 /**************************************************************************
-* This function is to get the client index by search id
+* This function is to get the index of the client by its id
 *
 *   inputs:
 * - clients_t* clients, char* id
@@ -129,8 +130,8 @@ int get_client_index_by_id(clients_t* clients, char* id)
 }
 
 /**************************************************************************
-* This function is to check the login 
-*
+* This function perfroms login check
+*  To check if there is a id-pw pair that matches the id and pw passed in
 *   inputs:
 * - clients_t* clients, char* id, char* pw_cipher
 *   outputs:
@@ -150,8 +151,8 @@ client_t* login_check(clients_t* clients, char* id, char* pw_cipher)
 }
 
 /**************************************************************************
-* This function is to check the register
-*
+* This function is to check if the id passed in exists already
+* 
 *   inputs:
 * - clients_t* clients, char* id
 *   outputs:
@@ -171,7 +172,7 @@ int register_check(clients_t* clients, char* id)
 
 /**************************************************************************
 * This function is to print the client list
-*
+* reuses print client function
 *   inputs:
 * - clients_t* clients
 *   outputs:

@@ -3,8 +3,8 @@
 #include <string.h>
 #include "transactions.h"
 /**************************************************************************
-* This function is to dynamically allocate momory to the transaction struct
-*
+* Default constructor 
+* allocates memory and construct linked list
 *   inputs:
 * - none
 *   outputs:
@@ -19,8 +19,8 @@ transactions_t* construct_transactions(void)
 }
 
 /**************************************************************************
-* This function is to set free the allocated momory to the transaction struct
-*
+* Destructor that calls linked list destructor
+* Frees up itself as well
 *   inputs:
 * - transactions_t* transactions
 *   outputs:
@@ -30,6 +30,26 @@ void destruct_transactions(transactions_t* transactions)
 {
 	destruct_linked_list(transactions->transaction_list);
 	free(transactions);
+}
+
+/**************************************************************************
+*  Checks if the transaction id already exists in the transactions list
+*
+*   inputs:
+* - transactions_t* transactions, char* id
+*   outputs:
+* - none
+**************************************************************************/
+int check_transaction_id_exists(transactions_t* transactions, char* id)
+{
+	unsigned int i;
+	for (i = 0; i < get_length(transactions->transaction_list); i++)
+	{
+		if (matches_transaction_id(get_transaction_by_index(transactions, i), id))
+			return 1;
+	}
+
+	return 0;
 }
 
 /**************************************************************************
@@ -46,7 +66,7 @@ linked_list_t* get_transaction_list(transactions_t* transactions)
 }
 
 /**************************************************************************
-* This function is to add a transaction
+* This function is to add a transaction to the group
 *
 *   inputs:
 * - transactions_t* transactions, transaction_t transaction
@@ -59,7 +79,7 @@ void add_transaction(transactions_t* transactions, transaction_t transaction)
 }
 
 /**************************************************************************
-* This function is to remove a transaction
+* This function is to remove a transaction from the group at given index
 *
 *   inputs:
 * - transactions_t* transactions, unsigned int index
