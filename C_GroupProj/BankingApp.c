@@ -10,9 +10,9 @@
 *  Loads the database and runs start menu
 *  Program ends when start menu ends,then destruct clients and transactions
 *   inputs:
-* - none
+* - void
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void BankingApp(void)
 {
@@ -37,9 +37,9 @@ void BankingApp(void)
 * This function is used to print start menu
 *
 *   inputs:
-* - none
+* - void
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_start_menu(void)
 {
@@ -55,7 +55,7 @@ void print_start_menu(void)
   error message. handles input type mismatch
 *
 *   inputs:
-* - none
+* - void
 *   outputs:
 * - int
 **************************************************************************/
@@ -80,7 +80,7 @@ int start_menu_read_option(void)
 *   inputs:
 * - clients_t* clients, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void start_menu(clients_t* clients, transactions_t* transactions)
 {
@@ -308,7 +308,7 @@ int read_client_id_pw(char* id, char* pw)
 *   inputs:
 * - clients_t* clients, transactions_t* transactions, char* id, char* pw
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
@@ -333,7 +333,7 @@ void login(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 *   inputs:
 * - clients_t* clients, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void login_client(clients_t* clients, transactions_t* transactions)
 {
@@ -369,7 +369,7 @@ void login_client(clients_t* clients, transactions_t* transactions)
 *   inputs:
 * - clients_t* clients, transactions_t* transactions, char* id, char* pw
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw)
 {
@@ -399,7 +399,7 @@ void regist(clients_t* clients, transactions_t* transactions, char* id, char* pw
 *   inputs:
 * - clients_t* clients, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void register_client(clients_t* clients, transactions_t* transactions)
 {
@@ -430,9 +430,9 @@ void register_client(clients_t* clients, transactions_t* transactions)
 * This function is used to print client menu
 *
 *   inputs:
-* - none
+* - void
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_client_menu(void)
 {
@@ -452,7 +452,7 @@ void print_client_menu(void)
 * This function is used to print client menu and read the option and print
   error message. handles input type mismatch
 *   inputs:
-* - none
+* - void
 *   outputs:
 * - int
 **************************************************************************/
@@ -477,7 +477,7 @@ int client_menu_read_option(void)
 *   inputs:
 * - client_t* current, clients_t* clients, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void client_menu(client_t* current, clients_t* clients, transactions_t* transactions)
 {
@@ -530,7 +530,7 @@ void client_menu(client_t* current, clients_t* clients, transactions_t* transact
 *   inputs:
 * - client_t* client, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_client_transactions(client_t* client, transactions_t* transactions)
 {
@@ -552,7 +552,7 @@ void print_client_transactions(client_t* client, transactions_t* transactions)
 *   inputs:
 * - client_t* current, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void view_account(client_t* current, transactions_t* transactions)
 {
@@ -570,7 +570,7 @@ void view_account(client_t* current, transactions_t* transactions)
 *   inputs:
 * - client_t* current, clients_t* clients, transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void transfer(client_t* current, clients_t* clients, transactions_t* transactions)
 {
@@ -632,7 +632,7 @@ int check_receiver(client_t* current, clients_t* clients, transactions_t* transa
 *   inputs:
 * - client_t* sender, client_t* receiver, transactions_t* transactions, clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void transfer_amount(client_t* sender, client_t* receiver, transactions_t* transactions, clients_t* clients)
 {
@@ -702,7 +702,7 @@ void transfer_amount(client_t* sender, client_t* receiver, transactions_t* trans
 *   inputs:
 * - int* buffer, int min, int max
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void generate_random_ints(int* buffer, int min, int max)
 {
@@ -715,7 +715,7 @@ void generate_random_ints(int* buffer, int min, int max)
 *   inputs:
 * - char* transaction_id
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void generate_transaction_id(char* transaction_id)
 {
@@ -736,7 +736,7 @@ void generate_transaction_id(char* transaction_id)
 *   inputs:
 * - date_time_t* date_time
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void generate_date_time(date_time_t* date_time)
 {
@@ -752,7 +752,7 @@ void generate_date_time(date_time_t* date_time)
 *   inputs:
 * - date_time_t* date_time
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 int read_amount(double* amount)
 {
@@ -795,7 +795,7 @@ int check_amount(client_t* sender, double amount)
 *   inputs:
 * - client_t* current, clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void deposit(client_t* current, clients_t* clients)
 {
@@ -825,7 +825,7 @@ void deposit(client_t* current, clients_t* clients)
 *   inputs:
 * - client_t* current, clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void withdraw(client_t* current, clients_t* clients)
 {
@@ -859,7 +859,7 @@ void withdraw(client_t* current, clients_t* clients)
 *   inputs:
 * - client_t* current, clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void change_pw(client_t* current, clients_t* clients)
 {
@@ -894,7 +894,7 @@ void change_pw(client_t* current, clients_t* clients)
 *   inputs:
 * - client_t* current
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void change_to_new_pw(client_t* current, clients_t* clients)
 {
@@ -1042,7 +1042,7 @@ int logout(client_t* current)
 *   inputs:
 * - clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void save_client_db(clients_t* clients)
 {
@@ -1081,7 +1081,7 @@ int load_client(FILE* fp, client_t* temp)
 *   inputs:
 * - clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void load_client_db(clients_t* clients)
 {
@@ -1117,7 +1117,7 @@ void load_client_db(clients_t* clients)
 *   inputs:
 * - transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void save_transaction_db(transactions_t* transactions)
 {
@@ -1148,7 +1148,7 @@ void save_transaction_db(transactions_t* transactions)
 *   inputs:
 * - FILE* fp, transaction_t* temp
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 int load_transaction(FILE* fp, transaction_t* temp)
 {
@@ -1171,7 +1171,7 @@ int load_transaction(FILE* fp, transaction_t* temp)
 *   inputs:
 * - transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void load_transaction_db(transactions_t* transactions)
 {
@@ -1205,9 +1205,9 @@ void load_transaction_db(transactions_t* transactions)
 * This function is to print error message
 *
 *   inputs:
-* - none
+* - void
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void error(void)
 {

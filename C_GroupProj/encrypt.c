@@ -3,7 +3,15 @@
 #include <string.h>
 #include <math.h>
 #include "encrypt.h"
-
+/**************************************************************************
+*   Turn char to int
+*
+*
+*   inputs:
+* - char c
+*   outputs:
+* - int
+**************************************************************************/
 int chartoasc(char c)
 {
 	int i = 0;
@@ -11,6 +19,13 @@ int chartoasc(char c)
 	return i;
 }
 
+/**************************************************************************
+*  Do the substitution
+*   inputs:
+* - int
+*   outputs:
+* - int
+**************************************************************************/
 int xor(int i)
 {
 	int m = 27;
@@ -23,6 +38,14 @@ int xor(int i)
 	return result;
 }
 
+/**************************************************************************
+*   Turn int back to char
+*
+*   inputs:
+* - int
+*   outputs:
+* - char
+**************************************************************************/
 char asctochar(int a)
 {
 	char c;
@@ -30,7 +53,14 @@ char asctochar(int a)
 	return c;
 }
 
-
+/**************************************************************************
+*   Encrypt the password
+*
+*   inputs:
+* - const char* input, const unsigned int input_len, const unsigned int HASH_SIZE
+*   outputs:
+* - unsigned long
+**************************************************************************/
 unsigned long encrypt(const char* input, const unsigned int input_len, const unsigned int HASH_SIZE)
 {
 	char inputBuff[50];

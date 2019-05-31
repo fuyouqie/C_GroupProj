@@ -6,7 +6,7 @@
 * Default constructor 
 * allocates memory and construct linked list
 *   inputs:
-* - none
+* - void
 *   outputs:
 * - transactions_t*
 **************************************************************************/
@@ -24,7 +24,7 @@ transactions_t* construct_transactions(void)
 *   inputs:
 * - transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void destruct_transactions(transactions_t* transactions)
 {
@@ -38,7 +38,7 @@ void destruct_transactions(transactions_t* transactions)
 *   inputs:
 * - transactions_t* transactions, char* id
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 int check_transaction_id_exists(transactions_t* transactions, char* id)
 {
@@ -71,7 +71,7 @@ linked_list_t* get_transaction_list(transactions_t* transactions)
 *   inputs:
 * - transactions_t* transactions, transaction_t transaction
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void add_transaction(transactions_t* transactions, transaction_t transaction)
 {
@@ -153,7 +153,7 @@ int get_transaction_index_by_id(transactions_t* transactions, char* transaction_
 *   inputs:
 * - transactions_t* transactions
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_transaction_list(transactions_t* transactions)
 {

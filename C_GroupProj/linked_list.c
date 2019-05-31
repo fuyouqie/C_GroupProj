@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 /**************************************************************************
-*   The default constructor for a node                                    *
-*   it allocates memory for the a node                                    *
-*   and sets the data and next pointer to NULL                            *
-*   inputs:                                                               *
-* - none                                                                  *
-*   outputs:                                                              *
-* - node_t*                                                               *
+*   The default constructor for a node                                    
+*   it allocates memory for the a node                                    
+*   and sets the data and next pointer to NULL                            
+*   inputs:                                                               
+* - void                                                                  
+*   outputs:                                                              
+* - node_t*                                                               
 **************************************************************************/
 node_t* construct_node(void)
 {
@@ -23,14 +23,14 @@ node_t* construct_node(void)
 }
 
 /**************************************************************************
-*  The alternate constructor that initialises the fields with value                                                                      *
-*  passed in                                                                       *
-*                                                                         *
-*  inputs:                                                                *
-* - node_t* next, void* data                                              *
-*                                                                         *
-*  outputs:                                                               *
-* - node_t*                                                               *
+*  The alternate constructor that initialises the fields with value      
+*  passed in                                                                       
+*                                                                         
+*  inputs:                                                                
+* - node_t* next, void* data                                              
+*                                                                         
+*  outputs:                                                               
+* - node_t*                                                               
 **************************************************************************/
 node_t* construct_node_overload1(node_t* next, void* data)
 {
@@ -44,14 +44,14 @@ node_t* construct_node_overload1(node_t* next, void* data)
 }
 
 /**************************************************************************
-*  The default way to destruct a node                                                                       *
-*  frees up whatever the data is pointing to and frees up memory                      *
-*  allocated to itself. But does not free next node                                                                     *
-*  inputs:                                                                *
-* - node_t* node                                                          *
-*                                                                         *
-*  outputs:                                                               *
-* - void                                                                  *
+*  The default way to destruct a node                                                                       
+*  frees up whatever the data is pointing to and frees up memory                      
+*  allocated to itself. But does not free next node                                                                     
+*  inputs:                                                                
+* - node_t* node                                                          
+*                                                                         
+*  outputs:                                                               
+* - void                                                                  
 **************************************************************************/
 void destruct_node(node_t* node)
 {
@@ -60,13 +60,13 @@ void destruct_node(node_t* node)
 }
 
 /**************************************************************************
-*   Returns a void pointer to data                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-*  - node_t* node                                                         *
-*   outputs:                                                              *
-*  - none                                                                 *
+*   Returns a void pointer to data                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+*  - node_t* node                                                         
+*   outputs:                                                              
+*  - void                                                                 
 **************************************************************************/
 void* get_data(node_t* node)
 {
@@ -74,13 +74,13 @@ void* get_data(node_t* node)
 }
 
 /**************************************************************************
-*   Returns the next opinter to next                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - node_t* node                                                          *
-*   outputs:                                                              *
-*   node_t* node                                                          *
+*   Returns the next opinter to next                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                              
+* - node_t* node                                                          
+*   outputs:                                                              
+* - node_t* node                                                          
 **************************************************************************/
 node_t* get_next(node_t* node)
 {
@@ -88,13 +88,13 @@ node_t* get_next(node_t* node)
 }
 
 /**************************************************************************
-*   set the next node to be the one passed in                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - node_t* node, node_t* next                                            *
-* - outputs:                                                              *
-*   none                                                                  *
+*   set the next node to be the one passed in                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - node_t* node, node_t* next                                            
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void set_next(node_t* node, node_t* next)
 {
@@ -102,13 +102,13 @@ void set_next(node_t* node, node_t* next)
 }
 
 /**************************************************************************
-*   Alternate constructor for a linked list                                                                      *
-*   Takes the destruct function and element size                                                                      *
-*   Allocates memory for all fields and initialises them with proper value                                                                     *
-*   inputs:                                                               *
-* - destruct_data_function destruct_data_fn, unsigned int element_size    *
-*   outputs:                                                              *
-*  -linked_list_t*                                                        *
+*   Alternate constructor for a linked list                                                                      
+*   Takes the destruct function and element size                                                                      
+*   Allocates memory for all fields and initialises them with proper value                                                                     
+*   inputs:                                                              
+* - destruct_data_function destruct_data_fn, unsigned int element_size    
+*   outputs:                                                              
+*  -linked_list_t*                                                        
 **************************************************************************/
 linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn, unsigned int element_size)
 {
@@ -122,13 +122,13 @@ linked_list_t* construct_linked_list(destruct_data_function destruct_data_fn, un
 }
 
 /**************************************************************************
-*   Destruct linked list from the head node to the tail                                                                    *
-*   Use the destruct function if provided with one                                                                      *
-*   Or use the default node destructor if not provided with destruct func                                                                      *
-*   inputs:                                                               *
-* - linked_list_t* list                                                   *
-*   outputs:                                                              *
-* - none                                                                  *
+*   Destruct linked list from the head node to the tail                                                                    
+*   Use the destruct function if provided with one                                                                      
+*   Or use the default node destructor if not provided with destruct func                                                                      
+*   inputs:                                                               
+* - linked_list_t* list                                                   
+*   outputs:                                                              
+* - void                                                                 
 **************************************************************************/
 void destruct_linked_list(linked_list_t* list)
 {
@@ -161,13 +161,13 @@ void destruct_linked_list(linked_list_t* list)
 }
 
 /**************************************************************************
-*   Checks if list length is 0                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list                                                   *
-*   outputs:                                                              *
-* - int                                                                   *
+*   Checks if list length is 0                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list                                                   
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int is_list_empty(linked_list_t* list)
 {
@@ -175,13 +175,13 @@ int is_list_empty(linked_list_t* list)
 }
 
 /**************************************************************************
-*   Adds a node in front of the linked list                                                                      *
-*   First allocates memory for the node and construct it                                                                      *
-*   Then set the head node to be it and increment length by 1                                                                      *
-*   inputs:                                                               *
-* - linked_list_t* list, void* data                                       *
-*   outputs:                                                              *
-* - none                                                                  *
+*   Adds a node in front of the linked list                                                                      
+*   First allocates memory for the node and construct it                                                                      
+*   Then set the head node to be it and increment length by 1                                                                      
+*   inputs:                                                               
+* - linked_list_t* list, void* data                                       
+*   outputs:                                                              
+* - void                                                                 
 **************************************************************************/
 void push_front(linked_list_t* list, void* data)
 {
@@ -202,13 +202,13 @@ void push_front(linked_list_t* list, void* data)
 }
 
 /**************************************************************************
-*   Adds a node at the end of the linked list                                                                      *
-*   First allocates memory for the node and construct it                                                                       *
-*   Travel through the whole list and set the new node at the end                                                                      *
-*   inputs:                                                               *
-* - linked_list_t* list, void* data                                       *
-*   outputs:                                                              *
-* - node_t*                                                               *
+*   Adds a node at the end of the linked list                                                                      
+*   First allocates memory for the node and construct it                                                                       
+*   Travel through the whole list and set the new node at the end                                                                      
+*   inputs:                                                               
+* - linked_list_t* list, void* data                                       
+*   outputs:                                                              
+* - void                                                               
 **************************************************************************/
 void push_back(linked_list_t* list, void* data)
 {
@@ -238,13 +238,13 @@ void push_back(linked_list_t* list, void* data)
 }
 
 /**************************************************************************
-*   Deletes the node at the front                                                                      *
-*   Use desctruct function if provieded                                                                      *
-*   Decrement length by 1                                                                      *
-*   inputs:                                                               *
-* - linked_list_t* list                                                   *
-*   outputs:                                                              *
-* - none                                                                  *
+*   Deletes the node at the front                                                                      
+*   Use desctruct function if provieded                                                                      
+*   Decrement length by 1                                                                      
+*   inputs:                                                               
+* - linked_list_t* list                                                   
+*   outputs:                                                              
+* - void                                                                 
 **************************************************************************/
 void pop_front(linked_list_t* list)
 {
@@ -262,13 +262,13 @@ void pop_front(linked_list_t* list)
 }
 
 /**************************************************************************
-*   Returns the element size                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list                                                   *
-*   outputs:                                                              *
-* - unsigned int                                                          *
+*   Returns the element size                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list                                                   
+*   outputs:                                                              
+* - unsigned int                                                          
 **************************************************************************/
 unsigned int get_element_size(linked_list_t* list)
 {
@@ -276,13 +276,13 @@ unsigned int get_element_size(linked_list_t* list)
 }
 
 /**************************************************************************
-*   Returns list length                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list                                                   *
-*   outputs:                                                              *
-* - unsigned int                                                          *
+*   Returns list length                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list                                                   
+*   outputs:                                                              
+* - unsigned int                                                          
 **************************************************************************/
 unsigned int get_length(linked_list_t* list)
 {
@@ -290,13 +290,13 @@ unsigned int get_length(linked_list_t* list)
 }
 
 /**************************************************************************
-*   returns the index of the node if it's data pointer and                                                                      *
-*   the data pointer passed in are pointing the same memory                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list, void* data                                       *
-*   outputs:                                                              *
-* - unsigned int                                                          *
+*   returns the index of the node if it's data pointer and                                                                      
+*   the data pointer passed in are pointing the same memory                                                                      
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list, void* data                                       
+*   outputs:                                                              
+* - unsigned int                                                          
 **************************************************************************/
 unsigned int get_index(linked_list_t* list, void* data)
 {
@@ -311,13 +311,13 @@ unsigned int get_index(linked_list_t* list, void* data)
 }
 
 /**************************************************************************
-*   returns the data pointer at a specific index                                                                      *
-*   by a simple traversal                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list, unsigned int index                               *
-*   outputs:                                                              *
-* - none                                                                  *
+*   returns the data pointer at a specific index                                                                      
+*   by a simple traversal                                                                      
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list, unsigned int index                               
+*   outputs:                                                              
+* - void                                                                
 **************************************************************************/
 void* get_by_index(linked_list_t* list, unsigned int index)
 {
@@ -338,13 +338,13 @@ void* get_by_index(linked_list_t* list, unsigned int index)
 }
 
 /**************************************************************************
-*   Deletes a node at given index                                                                     *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list, unsigned int index                               *
-*   outputs:                                                              *
-* - int                                                                   *
+*   Deletes a node at given index                                                                     
+*                                                                        
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list, unsigned int index                               
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int delete_by_index(linked_list_t* list, unsigned int index)
 {
@@ -396,13 +396,13 @@ int delete_by_index(linked_list_t* list, unsigned int index)
 }
 
 /**************************************************************************
-*   delete the give data in the list                                                                      *
-*   if the data IS EXACTLY the data in the list(same memory address)                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - linked_list_t* list, void* data                                       *
-*   outputs:                                                              *
-* - int                                                                   *
+*   delete the give data in the list                                                                      
+*   if the data IS EXACTLY the data in the list(same memory address)                                                                      
+*                                                                         
+*   inputs:                                                               
+* - linked_list_t* list, void* data                                       
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int delete_data(linked_list_t* list, void* data)
 {

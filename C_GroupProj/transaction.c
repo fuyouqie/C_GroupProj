@@ -10,11 +10,11 @@
 *
 *
 *   inputs:
-* - none
+* - void
 *   outputs:
 * - transaction_t*
 **************************************************************************/
-transaction_t* construct_transaction()
+transaction_t* construct_transaction(void)
 {
 	transaction_t* transaction = malloc(sizeof(transaction_t));
 	transaction->amount = 0.0;
@@ -51,7 +51,7 @@ transaction_t* construct_transaction_overload1(char* transaction_id, char* sende
 *   inputs:
 * - transaction_t* transaction
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void destruct_transaction(transaction_t* transaction)
 {
@@ -67,7 +67,7 @@ void destruct_transaction(transaction_t* transaction)
 * - transaction_t* transaction, char* transaction_id, char* sender_id, 
 *   char* receiver_id, double amount, date_time_t* date_time
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_transaction(transaction_t* transaction, char* transaction_id, char* sender_id, char* receiver_id, double amount, date_time_t* date_time)
 {
@@ -166,7 +166,7 @@ date_time_t* get_date_time(transaction_t* transaction)
 *   inputs:
 * - transaction_t* transaction, char* transaction_id
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_transaction_id(transaction_t* transaction, char* transaction_id)
 {
@@ -180,7 +180,7 @@ void set_transaction_id(transaction_t* transaction, char* transaction_id)
 *   inputs:
 * - transaction_t* transaction, char* sender_id
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_sender_id(transaction_t* transaction, char* sender_id)
 {
@@ -194,7 +194,7 @@ void set_sender_id(transaction_t* transaction, char* sender_id)
 *   inputs:
 * - transaction_t* transaction, char* receiver_id
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_receiver_id(transaction_t* transaction, char* receiver_id)
 {
@@ -208,7 +208,7 @@ void set_receiver_id(transaction_t* transaction, char* receiver_id)
 *   inputs:
 * - transaction_t* transaction, double amount
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_amount(transaction_t* transaction, double amount)
 {
@@ -221,7 +221,7 @@ void set_amount(transaction_t* transaction, double amount)
 *   inputs:
 * - transaction_t* transaction, date_time_t* date_time
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_date_time(transaction_t* transaction, date_time_t* date_time)
 {
@@ -234,7 +234,7 @@ void set_date_time(transaction_t* transaction, date_time_t* date_time)
 *   inputs:
 * - transaction_t* transaction
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_transaction(transaction_t* transaction)
 {

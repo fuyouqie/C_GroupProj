@@ -8,11 +8,11 @@
 * Allocates memory for a clients instance
 *  construct the internal linked list
 *   inputs:
-* - none
+* - void
 *   outputs:
-* - none
+* - clients_t*
 **************************************************************************/
-clients_t* construct_clients()
+clients_t* construct_clients(void)
 {
 	clients_t* clients = malloc(sizeof(clients_t));
 	clients->client_list = construct_linked_list(NULL,sizeof(client_t));
@@ -26,7 +26,7 @@ clients_t* construct_clients()
 *   inputs:
 * - clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void destruct_clients(clients_t* clients)
 {
@@ -53,7 +53,7 @@ linked_list_t* get_client_list(clients_t* clients)
 *   inputs:
 * - clients_t* clients
 *   outputs:
-* - linked_list_t*
+* - void
 **************************************************************************/
 void add_client(clients_t* clients, client_t client)
 {
@@ -176,7 +176,7 @@ int register_check(clients_t* clients, char* id)
 *   inputs:
 * - clients_t* clients
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_client_list(clients_t* clients)
 {

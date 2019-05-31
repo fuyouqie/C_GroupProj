@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 /**************************************************************************
-*   Default constructor                                                                      *
+*   Default constructor                                                                      
 *   Allocates memeory and initialises the fields                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - none                                                                  *
-*   outputs:                                                              *
-* - client_t*                                                             *
+*                                                                         
+*   inputs:                                                               
+* - void                                                                  
+*   outputs:                                                              
+* - client_t*                                                             
 **************************************************************************/
 client_t* construct_client(void)
 {
@@ -23,13 +23,13 @@ client_t* construct_client(void)
 }
 
 /**************************************************************************
-*   Alternate construct that takes id, pw_cipher and balance as paramters                                                                      *
-*   Allocates memory and initialises the fields with value passed in                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - char* id, char* pw_cipher, double balance                             *
-*   outputs:                                                              *
-* - client_t*                                                             *
+*   Alternate construct that takes id, pw_cipher and balance as paramters                                                                      
+*   Allocates memory and initialises the fields with value passed in                                                                      
+*                                                                         
+*   inputs:                                                               
+* - char* id, char* pw_cipher, double balance                             
+*   outputs:                                                              
+* - client_t*                                                             
 **************************************************************************/
 client_t* construct_client_overload1(char* id, char* pw_cipher, double balance)
 {
@@ -41,13 +41,13 @@ client_t* construct_client_overload1(char* id, char* pw_cipher, double balance)
 }
 
 /**************************************************************************
-*   Destruct a client                                                                      *
-*   No special consideration needed since                                                                       *
-*   all fields are allocated statically                                                                    *
-*   inputs:                                                               *
-* - client_t* client                                                      *
-*   outputs:                                                              *
-* - none                                                                  *
+*   Destruct a client                                                                      
+*   No special consideration needed since                                                                       
+*   all fields are allocated statically                                                                    
+*   inputs:                                                               
+* - client_t* client                                                      
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void destruct_client(client_t* client)
 {
@@ -55,13 +55,13 @@ void destruct_client(client_t* client)
 }
 
 /**************************************************************************
-*   Checks if the id and pw passed in is the same as the id and pw of                                                                      *
-*   the client passed in                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* id, char* pw_cipher                           *
-*   outputs:                                                              *
-* - int                                                                   *
+*   Checks if the id and pw passed in is the same as the id and pw of                                                                      
+*   the client passed in                                                                      
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* id, char* pw_cipher                           
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int matches_client_id_pw(client_t* client, char* id, char* pw_cipher)
 {
@@ -72,13 +72,13 @@ int matches_client_id_pw(client_t* client, char* id, char* pw_cipher)
 }
 
 /**************************************************************************
-*   Checks if the id passed in is the same as the id of                                                                      *
-*   the client passed in                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* id                                            *
-*   outputs:                                                              *
-* - int                                                                   *
+*   Checks if the id passed in is the same as the id of                                                                      
+*   the client passed in                                                                      
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* id                                            
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int matches_client_id(client_t* client, char* id)
 {
@@ -89,13 +89,13 @@ int matches_client_id(client_t* client, char* id)
 }
 
 /**************************************************************************
-*   Checks if the pw passed in is the same as the pw of                                                                      *
-*   the client passed in                                                                      *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* pw_cipher                                            *
-*   outputs:                                                              *
-* - int                                                                   *
+*   Checks if the pw passed in is the same as the pw of                                                                      
+*   the client passed in                                                                      
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* pw_cipher                                            
+*   outputs:                                                              
+* - int                                                                   
 **************************************************************************/
 int matches_client_pw(client_t* client, char* pw_cipher)
 {
@@ -106,13 +106,13 @@ int matches_client_pw(client_t* client, char* pw_cipher)
 }
 
 /**************************************************************************
-*   setup a client with value passed in                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* id, char* pw_cipher, double balance           *
-*   outputs:                                                              *
-* - none                                                                  *
+*   setup a client with value passed in                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* id, char* pw_cipher, double balance           
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void set_client(client_t* client, char* id, char* pw_cipher, double balance)
 {
@@ -122,13 +122,13 @@ void set_client(client_t* client, char* id, char* pw_cipher, double balance)
 }
 
 /**************************************************************************
-*   get a client's id                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client                                                      *
-*   outputs:                                                              *
-* - char*                                                                 *
+*   get a client's id                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client                                                      
+*   outputs:                                                              
+* - char*                                                                 
 **************************************************************************/
 char* get_client_id(client_t* client)
 {
@@ -136,13 +136,13 @@ char* get_client_id(client_t* client)
 }
 
 /**************************************************************************
-*   set a client's id                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* id                                            *
-*   outputs:                                                              *
-* - none                                                                  *
+*   set a client's id                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* id                                            
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void set_client_id(client_t* client, char* id)
 {
@@ -151,13 +151,13 @@ void set_client_id(client_t* client, char* id)
 }
 
 /**************************************************************************
-*   get a client's password cipher                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client                                                      *
-*   outputs:                                                              *
-* - char*                                                                 *
+*   get a client's password cipher                                                                      
+*                                                                        
+*                                                                         
+*   inputs:                                                               
+* - client_t* client                                                      
+*   outputs:                                                              
+* - char*                                                                 
 **************************************************************************/
 char* get_pw_cipher(client_t* client)
 {
@@ -165,13 +165,13 @@ char* get_pw_cipher(client_t* client)
 }
 
 /**************************************************************************
-*   set a client's password cipher                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, char* pw_cipher                                     *
-*   outputs:                                                              *
-* - none                                                                  *
+*   set a client's password cipher                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, char* pw_cipher                                     
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void set_pw_cipher(client_t* client, char* pw_cipher)
 {
@@ -180,13 +180,13 @@ void set_pw_cipher(client_t* client, char* pw_cipher)
 }
 
 /**************************************************************************
-*   get a client's balance                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client                                                      *
-*   outputs:                                                              *
-* - double                                                                *
+*   get a client's balance                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client                                                      
+*   outputs:                                                              
+* - double                                                                
 **************************************************************************/
 double get_balance(client_t* client)
 {
@@ -194,13 +194,13 @@ double get_balance(client_t* client)
 }
 
 /**************************************************************************
-*   set a client's balance                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, double balance                                      *
-*   outputs:                                                              *
-* - none                                                                  *
+*   set a client's balance                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, double balance                                      
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void set_balance(client_t* client, double balance)
 {
@@ -208,13 +208,13 @@ void set_balance(client_t* client, double balance)
 }
 
 /**************************************************************************
-*   increase the balance by amount                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, double balance                                      *
-*   outputs:                                                              *
-* - none                                                                  *
+*   increase the balance by amount                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, double balance                                      
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void increase_balance(client_t* client, double balance)
 {
@@ -222,13 +222,13 @@ void increase_balance(client_t* client, double balance)
 }
 
 /**************************************************************************
-*   decrease client's balance by amonut                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client, double balance                                      *
-*   outputs:                                                              *
-* - none                                                                  *
+*   decrease client's balance by amonut                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client, double balance                                      
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void decrease_balance(client_t* client, double balance)
 {
@@ -236,13 +236,13 @@ void decrease_balance(client_t* client, double balance)
 }
 
 /**************************************************************************
-*   prints a client's fields                                                                      *
-*                                                                         *
-*                                                                         *
-*   inputs:                                                               *
-* - client_t* client                                                      *
-*   outputs:                                                              *
-* - none                                                                  *
+*   prints a client's fields                                                                      
+*                                                                         
+*                                                                         
+*   inputs:                                                               
+* - client_t* client                                                      
+*   outputs:                                                              
+* - void                                                                  
 **************************************************************************/
 void print_client(client_t* client)
 {

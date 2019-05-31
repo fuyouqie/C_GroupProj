@@ -8,11 +8,11 @@
 *                                                                         
 *                                                                         
 *   inputs:                                                               
-* - none                                                                      
+* - void                                                                     
 *   outputs:                                                              
 * - date_time_t*                                                          
 **************************************************************************/
-date_time_t* construct_date_time()
+date_time_t* construct_date_time(void)
 {
 	date_time_t* date_time = malloc(sizeof(date_time_t));
 	date_time->month = 0;
@@ -51,7 +51,7 @@ date_time_t* construct_date_time_overload1(int month, int day, int hour, int min
 *   inputs:                                                               
 * - date_time_t* date_time                                                
 *   outputs:                                                              
-* - none                                                                  
+* - void                                                                  
 **************************************************************************/
 void destruct_date_time(date_time_t* date_time)
 {
@@ -65,7 +65,7 @@ void destruct_date_time(date_time_t* date_time)
 *   inputs:                                                               
 * - date_time_t* date_time, int month, int day, int hour, int minute      
 *   outputs:                                                              
-* - none                                                                  
+* - void                                                                  
 **************************************************************************/
 void set_date_time_(date_time_t* date_time, int month, int day, int hour, int minute)
 {
@@ -138,7 +138,7 @@ int get_minute(date_time_t* date_time)
 *   inputs:
 * - date_time_t* date_time, int month
 *   outputs:
-* - none 
+* - void 
 **************************************************************************/
 void set_month(date_time_t* date_time, int month)
 {
@@ -152,7 +152,7 @@ void set_month(date_time_t* date_time, int month)
 *   inputs:
 * - date_time_t* date_time, int day
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_day(date_time_t* date_time, int day)
 {
@@ -166,7 +166,7 @@ void set_day(date_time_t* date_time, int day)
 *   inputs:
 * - date_time_t* date_time, int hour
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_hour(date_time_t* date_time, int hour)
 {
@@ -180,7 +180,7 @@ void set_hour(date_time_t* date_time, int hour)
 *   inputs:
 * - date_time_t* date_time, int minute
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void set_minute(date_time_t* date_time, int minute)
 {
@@ -194,7 +194,7 @@ void set_minute(date_time_t* date_time, int minute)
 *   inputs:
 * - date_time_t* date_time
 *   outputs:
-* - none
+* - void
 **************************************************************************/
 void print_date_time(date_time_t* date_time)
 {
