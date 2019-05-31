@@ -18,7 +18,9 @@ transaction_t* construct_transaction(void)
 {
 	transaction_t* transaction = malloc(sizeof(transaction_t));
 	transaction->amount = 0.0;
-	transaction->date_time = NULL;
+	
+	date_time_t* date_time = construct_date_time_overload1(0, 0, 0, 0);
+	transaction->date_time = date_time;
 
 	return transaction;
 }

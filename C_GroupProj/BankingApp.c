@@ -1204,6 +1204,11 @@ void load_transaction_db(transactions_t* transactions)
 
 	/*Keeps adding if return value is the field count(8)*/
 	transaction_t temp;
+	date_time_t date_time;
+	set_date_time_(&date_time, 0, 0, 0, 0);
+	char empty[] = "";
+	set_transaction(&temp, empty, empty, empty, 0.0, &date_time);
+
 	while (load_transaction(fp, &temp) == TRANSACTION_FIELD_COUNT)
 		add_transaction(transactions, temp);
 
