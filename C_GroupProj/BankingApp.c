@@ -1104,10 +1104,6 @@ void load_client_db(clients_t* clients)
 		return;
 	}
 
-	/*Destruct clients and construct a new one*/
-	destruct_clients(clients);
-	clients = construct_clients();
-
 	/*Skip first line, which is the column names*/
 	fscanf(fp, "%*[^\n]");
 
@@ -1194,10 +1190,6 @@ void load_transaction_db(transactions_t* transactions)
 		printf("Read error\n");
 		return;
 	}
-
-	/*Destruct old one and construct a new one*/
-	destruct_transactions(transactions);
-	transactions = construct_transactions();
 
 	/*Skip the first line*/
 	fscanf(fp, "%*[^\n]");

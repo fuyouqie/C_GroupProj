@@ -81,5 +81,8 @@
     <Text Include="transaction_db.txt">
       <Filter>DB</Filter>
     </Text>
+    <Text Include="sample_db.txt">
+      <Filter>DB</Filter>
+    </Text>
   </ItemGroup>
 </Project>
